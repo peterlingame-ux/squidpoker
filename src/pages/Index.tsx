@@ -5,8 +5,7 @@ import { RulesSection } from '@/components/RulesSection';
 import { FeaturesSection } from '@/components/FeaturesSection';
 import { CharactersSection } from '@/components/CharactersSection';
 import { DownloadSection } from '@/components/DownloadSection';
-
-type Language = 'en' | 'zh' | 'ko';
+import { Language } from '@/types/common';
 
 const Index = () => {
   const [language, setLanguage] = useState<Language>('en');

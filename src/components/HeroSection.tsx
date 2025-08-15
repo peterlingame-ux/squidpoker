@@ -1,10 +1,9 @@
 import { Button } from '@/components/ui/button';
+import { useScrollToSection } from '@/hooks/useScrollToSection';
+import { LanguageProps } from '@/types/common';
 
-interface HeroSectionProps {
-  language: 'en' | 'zh' | 'ko';
-}
-
-export const HeroSection = ({ language }: HeroSectionProps) => {
+export const HeroSection = ({ language }: LanguageProps) => {
+  const scrollToSection = useScrollToSection();
   const content = {
     en: {
       title: "SQUIDPOKER",
@@ -93,15 +92,7 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
               <Button 
                 className="w-full py-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl shadow-lg"
                 size="lg"
-                onClick={() => {
-                  const downloadSection = document.getElementById('download-section');
-                  if (downloadSection) {
-                    downloadSection.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'start'
-                    });
-                  }
-                }}
+                onClick={() => scrollToSection('download-section')}
               >
                 {currentContent.downloadBtn}
               </Button>

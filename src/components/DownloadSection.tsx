@@ -1,11 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Smartphone, TabletSmartphone, Download, QrCode, Star, Users, Shield, Gamepad2 } from 'lucide-react';
+import { LanguageProps } from '@/types/common';
+import { QR_CODES } from '@/constants/qrCodes';
 
-interface DownloadSectionProps {
-  language: 'en' | 'zh' | 'ko';
-}
-
-export const DownloadSection = ({ language }: DownloadSectionProps) => {
+export const DownloadSection = ({ language }: LanguageProps) => {
   const content = {
     en: {
       title: "Download & Start Playing",
@@ -149,9 +147,10 @@ export const DownloadSection = ({ language }: DownloadSectionProps) => {
             <CardContent className="relative z-10">
               <div className="bg-white rounded-3xl p-8 shadow-2xl group-hover:scale-105 transition-transform duration-700 border border-slate-200">
                 <div className="aspect-square relative">
+                  {/* iOS QR Code - Easy to replace by updating QR_CODES.ios.src */}
                   <img 
-                    src="/lovable-uploads/2923158d-96b1-4bb0-8baa-047760828b66.png" 
-                    alt="iOS QR Code" 
+                    src={QR_CODES.ios.src} 
+                    alt={QR_CODES.ios.alt}
                     className="w-full h-full object-contain" 
                   />
                 </div>
@@ -192,9 +191,10 @@ export const DownloadSection = ({ language }: DownloadSectionProps) => {
             <CardContent className="relative z-10">
               <div className="bg-white rounded-3xl p-8 shadow-2xl group-hover:scale-105 transition-transform duration-700 border border-slate-200">
                 <div className="aspect-square relative">
+                  {/* Android QR Code - Easy to replace by updating QR_CODES.android.src */}
                   <img 
-                    src="/lovable-uploads/2923158d-96b1-4bb0-8baa-047760828b66.png" 
-                    alt="Android QR Code" 
+                    src={QR_CODES.android.src} 
+                    alt={QR_CODES.android.alt}
                     className="w-full h-full object-contain" 
                   />
                 </div>

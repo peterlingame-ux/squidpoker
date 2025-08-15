@@ -1,22 +1,23 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Language } from '@/types/common';
 
 interface LanguageToggleProps {
-  onLanguageChange: (language: 'en' | 'zh' | 'ko') => void;
+  onLanguageChange: (language: Language) => void;
 }
 
 export const LanguageToggle = ({ onLanguageChange }: LanguageToggleProps) => {
-  const [currentLang, setCurrentLang] = useState<'en' | 'zh' | 'ko'>('en');
+  const [currentLang, setCurrentLang] = useState<Language>('en');
 
-  const handleLanguageChange = (lang: 'en' | 'zh' | 'ko') => {
+  const handleLanguageChange = (lang: Language) => {
     setCurrentLang(lang);
     onLanguageChange(lang);
   };
 
   const languages = [
-    { code: 'en', label: 'EN' },
-    { code: 'zh', label: '中文' },
-    { code: 'ko', label: '한국어' }
+    { code: 'en' as Language, label: 'EN' },
+    { code: 'zh' as Language, label: '中文' },
+    { code: 'ko' as Language, label: '한국어' }
   ] as const;
 
   return (
