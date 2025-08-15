@@ -13,11 +13,11 @@ export const Falling3DCoins = () => {
 
   useEffect(() => {
     // 创建多个硬币
-    const coinArray: Coin[] = Array.from({ length: 12 }, (_, i) => ({
+    const coinArray: Coin[] = Array.from({ length: 8 }, (_, i) => ({
       id: i,
-      x: Math.random() * 100, // 0-100% 位置
-      delay: Math.random() * 8, // 0-8秒延迟
-      duration: 8 + Math.random() * 4, // 8-12秒持续时间
+      x: Math.random() * 80 + 10, // 10-90% 位置，避免边缘
+      delay: Math.random() * 2, // 0-2秒延迟，缩短延迟
+      duration: 4 + Math.random() * 2, // 4-6秒持续时间，加快速度
       rotation: Math.random() * 360, // 初始旋转角度
     }));
 
@@ -25,11 +25,11 @@ export const Falling3DCoins = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
       {coins.map((coin) => (
         <div
           key={coin.id}
-          className="absolute w-16 h-16 falling-coin opacity-70"
+          className="absolute w-12 h-12 falling-coin opacity-80"
           style={{
             left: `${coin.x}%`,
             animationDelay: `${coin.delay}s`,
