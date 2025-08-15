@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { useScrollToSection } from '@/hooks/useScrollToSection';
 import { LanguageProps } from '@/types/common';
+import { Falling3DCoins } from './Falling3DCoins';
 
 export const HeroSection = ({ language }: LanguageProps) => {
   const scrollToSection = useScrollToSection();
@@ -65,6 +66,9 @@ export const HeroSection = ({ language }: LanguageProps) => {
         {/* Right side color extension */}
         <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-[#f5f1e8] via-[#f5f1e8] to-transparent"></div>
       </div>
+
+      {/* 3D散落硬币效果 */}
+      <Falling3DCoins />
 
       {/* Download Button Section */}
       <div className="relative z-10 min-h-screen flex items-center justify-center">
