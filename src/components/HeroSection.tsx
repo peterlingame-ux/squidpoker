@@ -4,17 +4,7 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ language }: HeroSectionProps) => {
   return (
-    <section className="relative min-h-screen overflow-hidden">
-      {/* Full Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="/lovable-uploads/274b91c8-b439-4b9d-adcd-706a795d15d0.png"
-          alt="Squid Poker Background" 
-          className="w-full h-full object-cover object-center"
-        />
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/10"></div>
-      </div>
+    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-background via-background to-secondary/20">
 
       {/* Content positioned to avoid overlapping with characters */}
       <div className="relative z-10 min-h-screen flex items-center justify-end px-4 lg:px-12">
