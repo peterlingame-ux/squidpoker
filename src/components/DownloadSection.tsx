@@ -82,13 +82,6 @@ export const DownloadSection = ({ language }: DownloadSectionProps) => {
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-accent/10 to-primary/5 rounded-full blur-3xl opacity-40" />
       </div>
       
-      {/* Squid Game poker characters background */}
-      <div 
-        className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-20"
-        style={{
-          backgroundImage: `url('/lovable-uploads/19ae2a74-0348-404c-afb9-5ff36b170d11.png')`
-        }}
-      />
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Professional Header */}
