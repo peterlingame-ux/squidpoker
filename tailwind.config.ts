@@ -52,6 +52,24 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Squid Game theme colors
+				'squid-pink': 'hsl(var(--squid-pink))',
+				'squid-pink-dark': 'hsl(var(--squid-pink-dark))',
+				'squid-pink-light': 'hsl(var(--squid-pink-light))',
+				'sky-blue': 'hsl(var(--sky-blue))',
+				'ground-green': 'hsl(var(--ground-green))',
+				'guard-black': 'hsl(var(--guard-black))',
+				'player-teal': 'hsl(var(--player-teal))',
+				sidebar: {
+					DEFAULT: 'hsl(var(--sidebar-background))',
+					foreground: 'hsl(var(--sidebar-foreground))',
+					primary: 'hsl(var(--sidebar-primary))',
+					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+					accent: 'hsl(var(--sidebar-accent))',
+					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+					border: 'hsl(var(--sidebar-border))',
+					ring: 'hsl(var(--sidebar-ring))'
+				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
