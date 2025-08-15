@@ -6,14 +6,13 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
   const content = {
     en: {
       title: "SQUIDPOKER",
-      subtitle: "鱿鱼扑克",
-      tagline: "Bet it all to survive the ultimate poker challenge!",
+      tagline: "Bet it all to survive the ultimate poker challenge",
       downloadBtn: "Download Now",
       trailerBtn: "Watch Trailer",
       features: [
-        { icon: "♠", text: "Texas Hold'em Rules" },
-        { icon: "⚡", text: "Survival Mode" },
-        { icon: "🏆", text: "Tournament Play" }
+        { text: "Texas Hold'em Rules" },
+        { text: "Survival Mode" },
+        { text: "Tournament Play" }
       ],
       stats: [
         { value: "100K+", label: "Players" },
@@ -22,14 +21,13 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
     },
     zh: {
       title: "鱿鱼扑克",
-      subtitle: "SQUIDPOKER",
-      tagline: "赌上全部，在终极扑克生存挑战中生存下来！",
+      tagline: "赌上全部，在终极扑克生存挑战中生存下来",
       downloadBtn: "立即下载",
       trailerBtn: "观看预告",
       features: [
-        { icon: "♠", text: "德州扑克规则" },
-        { icon: "⚡", text: "生存模式" },
-        { icon: "🏆", text: "锦标赛模式" }
+        { text: "德州扑克规则" },
+        { text: "生存模式" },
+        { text: "锦标赛模式" }
       ],
       stats: [
         { value: "100K+", label: "在线玩家" },
@@ -38,14 +36,13 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
     },
     ko: {
       title: "오징어 포커",
-      subtitle: "SQUIDPOKER",
-      tagline: "최후의 포커 도전에서 살아남기 위해 모든 것을 걸어라!",
+      tagline: "최후의 포커 도전에서 살아남기 위해 모든 것을 걸어라",
       downloadBtn: "지금 다운로드",
       trailerBtn: "예고편 보기",
       features: [
-        { icon: "♠", text: "텍사스 홀덤 규칙" },
-        { icon: "⚡", text: "서바이벌 모드" },
-        { icon: "🏆", text: "토너먼트 플레이" }
+        { text: "텍사스 홀덤 규칙" },
+        { text: "서바이벌 모드" },
+        { text: "토너먼트 플레이" }
       ],
       stats: [
         { value: "100K+", label: "플레이어" },
@@ -57,7 +54,7 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
   const currentContent = content[language];
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section className="relative min-h-screen overflow-hidden bg-slate-50">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -65,75 +62,70 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
           alt="Squid Poker Characters Background" 
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-black/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-slate-50/95"></div>
       </div>
 
-      {/* Content positioned to center on mobile, right on desktop */}
-      <div className="relative z-10 min-h-screen flex items-center justify-center lg:justify-end px-4 lg:px-12">
-        <div className="max-w-xl w-full lg:mr-12 text-center lg:text-left">
+      {/* Content positioned to right */}
+      <div className="relative z-10 min-h-screen flex items-center justify-end px-6 lg:px-16">
+        <div className="max-w-lg w-full">
           
-          {/* Main content area optimized for mobile */}
-          <div className="bg-white/95 backdrop-blur-md rounded-3xl p-6 lg:p-12 shadow-2xl border border-white/20 animate-fade-in">
+          {/* Main content area - Clean and Professional */}
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 lg:p-10 shadow-xl border border-gray-200/50">
             
-            {/* Title Section */}
-            <div className="text-center mb-6 lg:mb-8">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-2 lg:mb-4 text-gray-900 leading-tight">
+            {/* Title Section - Simplified */}
+            <div className="mb-8">
+              <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-900 tracking-tight">
                 {currentContent.title}
               </h1>
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-squid-pink mb-4 lg:mb-6 tracking-wider">
-                {currentContent.subtitle}
-              </h2>
               
-              <p className="text-base sm:text-lg lg:text-xl font-semibold text-gray-800 leading-relaxed px-2">
+              <p className="text-lg text-gray-600 leading-relaxed">
                 {currentContent.tagline}
               </p>
             </div>
             
-            {/* Action Buttons */}
-            <div className="flex flex-col gap-3 lg:gap-4 mb-6 lg:mb-8">
-              <button className="w-full px-6 lg:px-8 py-3 lg:py-4 bg-squid-pink hover:bg-squid-pink-dark text-white font-bold rounded-xl text-base lg:text-lg hover-lift transition-all duration-300 shadow-lg hover:shadow-xl">
+            {/* Action Buttons - Clean Design */}
+            <div className="flex flex-col gap-3 mb-8">
+              <button className="w-full px-6 py-4 bg-rose-500 hover:bg-rose-600 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg shadow-rose-500/25">
                 {currentContent.downloadBtn}
               </button>
-              <button className="w-full px-6 lg:px-8 py-3 lg:py-4 bg-gray-600 hover:bg-gray-700 text-white font-bold rounded-xl text-base lg:text-lg hover-lift transition-all duration-300 shadow-lg">
+              <button className="w-full px-6 py-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl transition-colors duration-200 border border-gray-200">
                 {currentContent.trailerBtn}
               </button>
             </div>
 
-            {/* Game Features Quick Info */}
-            <div className="space-y-3 lg:space-y-4">
+            {/* Game Features - Minimal Design */}
+            <div className="space-y-3 mb-8">
               {currentContent.features.map((feature, index) => (
-                <div key={index} className="flex items-center gap-3 p-2.5 lg:p-3 bg-gray-50 rounded-lg">
-                  <div className="w-7 h-7 lg:w-8 lg:h-8 bg-squid-pink rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold text-xs lg:text-sm">{feature.icon}</span>
-                  </div>
-                  <span className="text-gray-800 font-medium text-sm lg:text-base">
+                <div key={index} className="flex items-center gap-3 text-gray-700">
+                  <div className="w-2 h-2 bg-rose-500 rounded-full flex-shrink-0"></div>
+                  <span className="font-medium text-sm">
                     {feature.text}
                   </span>
                 </div>
               ))}
             </div>
-          </div>
-          
-          {/* Additional floating info cards */}
-          <div className="mt-4 lg:mt-6 grid grid-cols-2 gap-3 lg:gap-4">
-            {currentContent.stats.map((stat, index) => (
-              <div key={index} className="bg-white/90 backdrop-blur-sm rounded-2xl p-3 lg:p-4 text-center shadow-lg animate-scale-in" style={{ animationDelay: `${(index + 1) * 0.2}s` }}>
-                <div className="text-lg lg:text-2xl font-bold text-squid-pink mb-1">{stat.value}</div>
-                <div className="text-xs lg:text-sm text-gray-700 font-medium">
-                  {stat.label}
+
+            {/* Stats - Clean Layout */}
+            <div className="grid grid-cols-2 gap-4 pt-6 border-t border-gray-200">
+              {currentContent.stats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-2xl font-bold text-gray-900 mb-1">{stat.value}</div>
+                  <div className="text-sm text-gray-500 font-medium">
+                    {stat.label}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Subtle decorative elements that don't interfere with the background */}
-      <div className="absolute bottom-4 lg:bottom-8 left-4 lg:left-8 z-20 opacity-60">
-        <div className="flex gap-1.5 lg:gap-2">
-          <div className="w-2 h-2 lg:w-3 lg:h-3 bg-squid-pink rounded-full animate-pulse"></div>
-          <div className="w-2 h-2 lg:w-3 lg:h-3 bg-yellow-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-          <div className="w-2 h-2 lg:w-3 lg:h-3 bg-player-teal rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+      {/* Minimal decorative elements */}
+      <div className="absolute bottom-8 left-8 z-20 opacity-40">
+        <div className="flex gap-2">
+          <div className="w-2 h-2 bg-rose-500 rounded-full"></div>
+          <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+          <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
         </div>
       </div>
     </section>
