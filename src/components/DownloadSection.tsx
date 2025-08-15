@@ -84,7 +84,7 @@ export const DownloadSection = ({ language }: DownloadSectionProps) => {
       
       {/* Squid Game poker characters background */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+        className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-20"
         style={{
           backgroundImage: `url('/lovable-uploads/19ae2a74-0348-404c-afb9-5ff36b170d11.png')`
         }}
