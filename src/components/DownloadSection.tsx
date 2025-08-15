@@ -33,6 +33,14 @@ export const DownloadSection = ({ language }: DownloadSectionProps) => {
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:60px_60px]" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
       
+      {/* Hooded figure background */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+        style={{
+          backgroundImage: `url('/lovable-uploads/e5aa437e-c3d4-45f5-b169-1086a3c9144a.png')`
+        }}
+      />
+      
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
