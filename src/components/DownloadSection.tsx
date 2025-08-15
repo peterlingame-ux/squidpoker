@@ -69,7 +69,7 @@ export const DownloadSection = ({ language }: DownloadSectionProps) => {
               <div className="relative group-hover:scale-105 transition-transform duration-500">
                 <div className="w-full aspect-square bg-white rounded-2xl p-6 shadow-lg border-2 border-gray-100">
                   <img 
-                    src={iosQr} 
+                    src="/lovable-uploads/2923158d-96b1-4bb0-8baa-047760828b66.png" 
                     alt="iOS QR Code" 
                     className="w-full h-full object-contain filter contrast-110" 
                   />
@@ -103,7 +103,7 @@ export const DownloadSection = ({ language }: DownloadSectionProps) => {
               <div className="relative group-hover:scale-105 transition-transform duration-500">
                 <div className="w-full aspect-square bg-white rounded-2xl p-6 shadow-lg border-2 border-gray-100">
                   <img 
-                    src={androidQr} 
+                    src="/lovable-uploads/2923158d-96b1-4bb0-8baa-047760828b66.png" 
                     alt="Android QR Code" 
                     className="w-full h-full object-contain filter contrast-110" 
                   />
