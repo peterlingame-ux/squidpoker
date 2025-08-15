@@ -74,18 +74,18 @@ export const HeroSection = ({ language }: LanguageProps) => {
       <div className="relative z-10 min-h-screen flex items-center justify-center">
         <div className="text-center">
           {/* Title */}
-          <h1 className="text-6xl md:text-8xl font-bold mb-4 text-white drop-shadow-2xl tracking-wider">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-4 text-white drop-shadow-2xl tracking-wider px-4">
             {currentContent.title}
           </h1>
           
           {/* Tagline */}
-          <p className="text-xl md:text-2xl text-white/90 mb-12 drop-shadow-lg max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-8 sm:mb-12 drop-shadow-lg max-w-2xl mx-auto px-4">
             {currentContent.tagline}
           </p>
           
           {/* Download Button */}
           <Button 
-            className="px-12 py-6 text-xl font-bold bg-primary hover:bg-primary/90 text-white rounded-2xl shadow-2xl hover:scale-105 transition-all duration-300"
+            className="px-6 sm:px-8 md:px-12 py-4 sm:py-5 md:py-6 text-lg sm:text-xl font-bold bg-primary hover:bg-primary/90 text-white rounded-2xl shadow-2xl hover:scale-105 transition-all duration-300 mx-4"
             size="lg"
             onClick={() => scrollToSection('download-section')}
           >
@@ -95,11 +95,11 @@ export const HeroSection = ({ language }: LanguageProps) => {
       </div>
 
       {/* Minimal decorative elements */}
-      <div className="absolute bottom-8 left-8 z-20 opacity-40">
-        <div className="flex gap-2">
-          <div className="w-2 h-2 bg-primary rounded-full"></div>
-          <div className="w-2 h-2 bg-muted rounded-full"></div>
-          <div className="w-2 h-2 bg-muted-foreground rounded-full"></div>
+      <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 z-20 opacity-40">
+        <div className="flex gap-1 sm:gap-2">
+          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full"></div>
+          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-muted rounded-full"></div>
+          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-muted-foreground rounded-full"></div>
         </div>
       </div>
     </section>

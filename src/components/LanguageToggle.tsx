@@ -21,13 +21,13 @@ export const LanguageToggle = ({ onLanguageChange }: LanguageToggleProps) => {
   ] as const;
 
   return (
-    <div className="fixed top-4 right-4 z-50 flex flex-wrap gap-1">
+    <div className="fixed top-2 sm:top-4 right-2 sm:right-4 z-50 flex flex-wrap gap-1">
       {languages.map(({ code, label }) => (
         <Button
           key={code}
           variant={currentLang === code ? 'default' : 'secondary'}
           size="sm"
-          className="font-bold text-xs sm:text-sm min-w-[40px] sm:min-w-[50px]"
+          className="font-bold text-xs sm:text-sm min-w-[35px] sm:min-w-[45px] px-2 py-1 sm:px-3 sm:py-2"
           onClick={() => handleLanguageChange(code)}
         >
           {label}

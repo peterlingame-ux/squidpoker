@@ -12,8 +12,12 @@ export const Falling3DCoins = () => {
   const [coins, setCoins] = useState<Coin[]>([]);
 
   useEffect(() => {
+    // 根据屏幕大小调整硬币数量
+    const isMobile = window.innerWidth < 768;
+    const coinCount = isMobile ? 5 : 8;
+    
     // 创建多个硬币
-    const coinArray: Coin[] = Array.from({ length: 8 }, (_, i) => ({
+    const coinArray: Coin[] = Array.from({ length: coinCount }, (_, i) => ({
       id: i,
       x: Math.random() * 80 + 10, // 10-90% 位置，避免边缘
       delay: Math.random() * 2, // 0-2秒延迟，缩短延迟
@@ -29,7 +33,7 @@ export const Falling3DCoins = () => {
       {coins.map((coin) => (
         <div
           key={coin.id}
-          className="absolute w-12 h-12 falling-coin opacity-80"
+          className="absolute w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 falling-coin opacity-80"
           style={{
             left: `${coin.x}%`,
             animationDelay: `${coin.delay}s`,
