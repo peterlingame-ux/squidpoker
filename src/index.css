@@ -113,6 +113,8 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Noto Sans SC', 'Inter', sans-serif;
+    min-width: 1200px;
+    overflow-x: auto;
   }
 
   /* Custom gradient backgrounds */
