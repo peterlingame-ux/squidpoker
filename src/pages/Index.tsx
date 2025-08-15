@@ -7,9 +7,9 @@ import { CharactersSection } from '@/components/CharactersSection';
 import { DownloadSection } from '@/components/DownloadSection';
 
 const Index = () => {
-  const [language, setLanguage] = useState<'en' | 'zh'>('en');
+  const [language, setLanguage] = useState<'en' | 'zh' | 'ko'>('en');
 
-  const handleLanguageChange = (lang: 'en' | 'zh') => {
+  const handleLanguageChange = (lang: 'en' | 'zh' | 'ko') => {
     setLanguage(lang);
   };
 

@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Spade, Users, Target, Trophy } from 'lucide-react';
 
 interface RulesSectionProps {
-  language: 'en' | 'zh';
+  language: 'en' | 'zh' | 'ko';
 }
 
 export const RulesSection = ({ language }: RulesSectionProps) => {
@@ -58,6 +58,32 @@ export const RulesSection = ({ language }: RulesSectionProps) => {
           description: "目标是以最好的五张牌组合赢得底池。"
         }
       ]
+    },
+    ko: {
+      title: "텍사스 홀덤 규칙 개요",
+      subtitle: "세계에서 가장 인기 있는 포커 게임의 기본을 마스터하세요",
+      rules: [
+        {
+          icon: Users,
+          title: "홀 카드",
+          description: "각 플레이어는 2장의 개인 \"홀\" 카드를 받습니다."
+        },
+        {
+          icon: Spade,
+          title: "커뮤니티 카드",
+          description: "5장의 커뮤니티 카드가 단계별로 공개됩니다 (플롭, 턴, 리버)."
+        },
+        {
+          icon: Target,
+          title: "베팅 라운드",
+          description: "네 번의 베팅 라운드가 있습니다: 프리플롭, 플롭, 턴, 리버."
+        },
+        {
+          icon: Trophy,
+          title: "승리 조건",
+          description: "최고의 5장 카드 조합을 만들어 팟을 차지하는 것이 목표입니다."
+        }
+      ]
     }
   };
 
@@ -76,7 +102,7 @@ export const RulesSection = ({ language }: RulesSectionProps) => {
           <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-600/30 mb-8">
             <Spade className="w-5 h-5 text-primary" />
             <span className="text-sm font-semibold text-slate-300 uppercase tracking-wider">
-              {language === 'en' ? 'Game Rules' : '游戏规则'}
+              {language === 'en' ? 'Game Rules' : language === 'zh' ? '游戏规则' : '게임 규칙'}
             </span>
           </div>
           
@@ -128,11 +154,11 @@ export const RulesSection = ({ language }: RulesSectionProps) => {
           <div className="inline-flex items-center gap-6 px-8 py-4 rounded-2xl bg-slate-800/30 backdrop-blur-sm border border-slate-600/30">
             <div className="flex items-center gap-2 text-sm text-slate-400">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              {language === 'en' ? 'Official Texas Hold\'em Rules' : '官方德州扑克规则'}
+              {language === 'en' ? 'Official Texas Hold\'em Rules' : language === 'zh' ? '官方德州扑克规则' : '공식 텍사스 홀덤 규칙'}
             </div>
             <div className="w-px h-4 bg-slate-600/50" />
             <div className="text-sm text-slate-400">
-              {language === 'en' ? 'WSOP Approved' : 'WSOP认证'}
+              {language === 'en' ? 'WSOP Approved' : language === 'zh' ? 'WSOP认证' : 'WSOP 인증'}
             </div>
           </div>
         </div>

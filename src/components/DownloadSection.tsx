@@ -4,7 +4,7 @@ import iosQr from '@/assets/ios-qr.png';
 import androidQr from '@/assets/android-qr.png';
 
 interface DownloadSectionProps {
-  language: 'en' | 'zh';
+  language: 'en' | 'zh' | 'ko';
 }
 
 export const DownloadSection = ({ language }: DownloadSectionProps) => {
@@ -22,6 +22,13 @@ export const DownloadSection = ({ language }: DownloadSectionProps) => {
       ios: "iOS 下载",
       android: "Android 下载",
       description: "支持所有平台"
+    },
+    ko: {
+      title: "다운로드 및 플레이", 
+      subtitle: "QR 코드를 스캔하여 오징어포커를 다운로드하세요",
+      ios: "iOS 다운로드",
+      android: "Android 다운로드",
+      description: "모든 플랫폼에서 지원"
     }
   };
 
@@ -86,7 +93,7 @@ export const DownloadSection = ({ language }: DownloadSectionProps) => {
               </div>
               <div className="mt-6 text-center">
                 <p className="text-sm text-muted-foreground">
-                  {language === 'en' ? 'Scan with your iPhone camera' : '使用iPhone相机扫描'}
+                  {language === 'en' ? 'Scan with your iPhone camera' : language === 'zh' ? '使用iPhone相机扫描' : 'iPhone 카메라로 스캔'}
                 </p>
               </div>
             </CardContent>
@@ -120,7 +127,7 @@ export const DownloadSection = ({ language }: DownloadSectionProps) => {
               </div>
               <div className="mt-6 text-center">
                 <p className="text-sm text-muted-foreground">
-                  {language === 'en' ? 'Scan with any QR code reader' : '使用任意二维码扫描器'}
+                  {language === 'en' ? 'Scan with any QR code reader' : language === 'zh' ? '使用任意二维码扫描器' : '모든 QR 코드 리더로 스캔'}
                 </p>
               </div>
             </CardContent>
@@ -132,11 +139,11 @@ export const DownloadSection = ({ language }: DownloadSectionProps) => {
           <div className="inline-flex items-center gap-6 px-8 py-4 rounded-2xl bg-card/30 backdrop-blur-sm border border-border/50">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              {language === 'en' ? 'Available Now' : '现已上线'}
+              {language === 'en' ? 'Available Now' : language === 'zh' ? '现已上线' : '지금 이용 가능'}
             </div>
             <div className="w-px h-4 bg-border" />
             <div className="text-sm text-muted-foreground">
-              {language === 'en' ? 'Free to Download' : '免费下载'}
+              {language === 'en' ? 'Free to Download' : language === 'zh' ? '免费下载' : '무료 다운로드'}
             </div>
           </div>
         </div>

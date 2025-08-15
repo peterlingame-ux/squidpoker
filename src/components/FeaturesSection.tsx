@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Triangle, Circle, Square } from 'lucide-react';
 
 interface FeaturesSectionProps {
-  language: 'en' | 'zh';
+  language: 'en' | 'zh' | 'ko';
 }
 
 export const FeaturesSection = ({ language }: FeaturesSectionProps) => {
@@ -54,6 +54,30 @@ export const FeaturesSection = ({ language }: FeaturesSectionProps) => {
           gradient: "from-indigo-500 to-purple-500"
         }
       ]
+    },
+    ko: {
+      title: "게임 특징",
+      subtitle: "포커 전략과 오징어 게임 서바이벌의 궁극적인 융합을 경험하세요",
+      features: [
+        {
+          icon: Triangle,
+          title: "다양한 게임 모드",
+          description: "오징어 게임 요소가 포함된 토너먼트 또는 캐주얼 모드에서 플레이하세요. 궁극적인 상을 위해 경쟁하는 탈락 스타일 포커 게임을 경험하세요.",
+          gradient: "from-pink-500 to-red-500"
+        },
+        {
+          icon: Circle,
+          title: "독특한 캐릭터 시스템",
+          description: "운동복을 입은 플레이어나 가면을 쓴 가드 같은 상징적인 아바타 중에서 선택하세요. 각 캐릭터는 고유한 특전과 스타일을 가지고 있습니다.",
+          gradient: "from-purple-500 to-pink-500"
+        },
+        {
+          icon: Square,
+          title: "도전적인 스테이지 미션",
+          description: "오징어 게임에서 영감을 받은 레벨을 통해 진행하세요. 특별한 포커 도전(무궁화 꽃이 피었습니다, 줄다리기 등)을 완료하여 생존하고 보상을 획득하세요.",
+          gradient: "from-indigo-500 to-purple-500"
+        }
+      ]
     }
   };
 
@@ -72,7 +96,7 @@ export const FeaturesSection = ({ language }: FeaturesSectionProps) => {
           <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8">
             <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
             <span className="text-sm font-semibold text-white uppercase tracking-wider">
-              {language === 'en' ? 'Features' : '特色功能'}
+              {language === 'en' ? 'Features' : language === 'zh' ? '特色功能' : '특징'}
             </span>
           </div>
           
@@ -119,7 +143,7 @@ export const FeaturesSection = ({ language }: FeaturesSectionProps) => {
                   <div className="mt-6 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="w-1.5 h-1.5 bg-white rounded-full" />
                     <span className="text-xs font-medium text-white uppercase tracking-wider">
-                      {language === 'en' ? 'Learn More' : '了解更多'}
+                      {language === 'en' ? 'Learn More' : language === 'zh' ? '了解更多' : '더 알아보기'}
                     </span>
                   </div>
                 </CardContent>
@@ -133,11 +157,11 @@ export const FeaturesSection = ({ language }: FeaturesSectionProps) => {
           <div className="inline-flex items-center gap-6 px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20">
             <div className="flex items-center gap-2 text-sm text-white/90">
               <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-              {language === 'en' ? 'Survival-Based Gameplay' : '生存类游戏玩法'}
+              {language === 'en' ? 'Survival-Based Gameplay' : language === 'zh' ? '生存类游戏玩法' : '서바이벌 기반 게임플레이'}
             </div>
             <div className="w-px h-4 bg-white/30" />
             <div className="text-sm text-white/90">
-              {language === 'en' ? 'High Stakes Competition' : '高风险竞技'}
+              {language === 'en' ? 'High Stakes Competition' : language === 'zh' ? '高风险竞技' : '고위험 경쟁'}
             </div>
           </div>
         </div>
