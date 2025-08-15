@@ -62,12 +62,12 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
         <img 
           src="/lovable-uploads/b03c5211-f310-42bd-af44-a2dcc98b72c8.png"
           alt="Squid Poker Characters Background" 
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-contain object-center"
         />
         {/* Left side color extension */}
-        <div className="absolute left-0 top-0 w-1/4 h-full bg-gradient-to-r from-[#f5f1e8] to-transparent"></div>
+        <div className="absolute left-0 top-0 w-1/3 h-full bg-gradient-to-r from-[#f5f1e8] via-[#f5f1e8] to-transparent"></div>
         {/* Right side color extension */}
-        <div className="absolute right-0 top-0 w-1/4 h-full bg-gradient-to-l from-[#f5f1e8] to-transparent"></div>
+        <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-[#f5f1e8] via-[#f5f1e8] to-transparent"></div>
       </div>
 
       {/* Content positioned to right */}
