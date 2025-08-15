@@ -13,29 +13,25 @@ export const LanguageToggle = ({ onLanguageChange }: LanguageToggleProps) => {
     onLanguageChange(lang);
   };
 
+  const languages = [
+    { code: 'en', label: 'EN' },
+    { code: 'zh', label: '中文' },
+    { code: 'ko', label: '한국어' }
+  ] as const;
+
   return (
     <div className="fixed top-4 right-4 z-50 flex flex-wrap gap-1">
-      <Button
-        variant={currentLang === 'en' ? 'default' : 'secondary'}
-        className="px-2 sm:px-3 py-1 font-bold text-xs sm:text-sm min-w-[40px] sm:min-w-[50px]"
-        onClick={() => handleLanguageChange('en')}
-      >
-        EN
-      </Button>
-      <Button
-        variant={currentLang === 'zh' ? 'default' : 'secondary'}
-        className="px-2 sm:px-3 py-1 font-bold text-xs sm:text-sm min-w-[40px] sm:min-w-[50px]"
-        onClick={() => handleLanguageChange('zh')}
-      >
-        中文
-      </Button>
-      <Button
-        variant={currentLang === 'ko' ? 'default' : 'secondary'}
-        className="px-2 sm:px-3 py-1 font-bold text-xs sm:text-sm min-w-[40px] sm:min-w-[50px]"
-        onClick={() => handleLanguageChange('ko')}
-      >
-        한국어
-      </Button>
+      {languages.map(({ code, label }) => (
+        <Button
+          key={code}
+          variant={currentLang === code ? 'default' : 'secondary'}
+          size="sm"
+          className="font-bold text-xs sm:text-sm min-w-[40px] sm:min-w-[50px]"
+          onClick={() => handleLanguageChange(code)}
+        >
+          {label}
+        </Button>
+      ))}
     </div>
   );
 };

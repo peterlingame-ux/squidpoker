@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { LanguageToggle } from '@/components/LanguageToggle';
 import { HeroSection } from '@/components/HeroSection';
 import { RulesSection } from '@/components/RulesSection';
@@ -6,12 +6,14 @@ import { FeaturesSection } from '@/components/FeaturesSection';
 import { CharactersSection } from '@/components/CharactersSection';
 import { DownloadSection } from '@/components/DownloadSection';
 
-const Index = () => {
-  const [language, setLanguage] = useState<'en' | 'zh' | 'ko'>('en');
+type Language = 'en' | 'zh' | 'ko';
 
-  const handleLanguageChange = (lang: 'en' | 'zh' | 'ko') => {
+const Index = () => {
+  const [language, setLanguage] = useState<Language>('en');
+
+  const handleLanguageChange = useCallback((lang: Language) => {
     setLanguage(lang);
-  };
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">

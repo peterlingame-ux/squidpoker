@@ -1,3 +1,5 @@
+import { Button } from '@/components/ui/button';
+
 interface HeroSectionProps {
   language: 'en' | 'zh' | 'ko';
 }
@@ -85,12 +87,19 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
             
             {/* Action Buttons - Clean Design */}
             <div className="flex flex-col gap-3 mb-8">
-              <button className="w-full px-6 py-4 bg-rose-500 hover:bg-rose-600 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg shadow-rose-500/25">
+              <Button 
+                className="w-full py-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl shadow-lg"
+                size="lg"
+              >
                 {currentContent.downloadBtn}
-              </button>
-              <button className="w-full px-6 py-4 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg backdrop-blur border border-white/30">
+              </Button>
+              <Button 
+                variant="outline" 
+                className="w-full py-4 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-xl backdrop-blur border-white/30"
+                size="lg"
+              >
                 {currentContent.trailerBtn}
-              </button>
+              </Button>
             </div>
 
             {/* Game Features - Minimal Design */}
@@ -123,9 +132,9 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
       {/* Minimal decorative elements */}
       <div className="absolute bottom-8 left-8 z-20 opacity-40">
         <div className="flex gap-2">
-          <div className="w-2 h-2 bg-rose-500 rounded-full"></div>
-          <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-          <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+          <div className="w-2 h-2 bg-primary rounded-full"></div>
+          <div className="w-2 h-2 bg-muted rounded-full"></div>
+          <div className="w-2 h-2 bg-muted-foreground rounded-full"></div>
         </div>
       </div>
     </section>
