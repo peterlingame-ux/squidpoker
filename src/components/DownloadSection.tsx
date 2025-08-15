@@ -56,48 +56,72 @@ export const DownloadSection = ({ language }: DownloadSectionProps) => {
           </p>
         </div>
 
-        {/* Download Section - Single QR Code Placeholder */}
-        <div className="flex justify-center">
-          <Card className="group relative overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 max-w-md w-full">
+        {/* Download Cards */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {/* iOS Card */}
+          <Card className="group relative overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
-            <CardHeader className="relative z-10 pb-4 text-center">
-              <div className="flex items-center justify-center gap-3 mb-2">
+            <CardHeader className="relative z-10 pb-4">
+              <div className="flex items-center gap-3 mb-2">
                 <div className="p-2 rounded-lg bg-primary/10">
                   <Smartphone className="w-6 h-6 text-primary" />
                 </div>
                 <CardTitle className="text-2xl font-bold text-foreground">
-                  {title}
+                  {ios}
                 </CardTitle>
               </div>
             </CardHeader>
             
             <CardContent className="relative z-10">
               <div className="relative group-hover:scale-105 transition-transform duration-500">
-                <div className="w-full aspect-square bg-white rounded-2xl p-6 shadow-lg border-2 border-gray-100 max-w-80 mx-auto">
+                <div className="w-full aspect-square bg-white rounded-2xl p-6 shadow-lg border-2 border-gray-100">
                   <img 
                     src="/lovable-uploads/2923158d-96b1-4bb0-8baa-047760828b66.png" 
-                    alt="Download QR Code" 
+                    alt="iOS QR Code" 
                     className="w-full h-full object-contain filter contrast-110" 
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
               <div className="mt-6 text-center">
-                <p className="text-sm text-muted-foreground mb-2">
-                  {language === 'en' ? 'Scan to download the game' : '扫描下载游戏'}
+                <p className="text-sm text-muted-foreground">
+                  {language === 'en' ? 'Scan with your iPhone camera' : '使用iPhone相机扫描'}
                 </p>
-                <div className="flex justify-center items-center gap-4 text-xs text-muted-foreground">
-                  <span className="flex items-center gap-1">
-                    <Smartphone className="w-3 h-3" />
-                    iOS
-                  </span>
-                  <div className="w-px h-3 bg-border" />
-                  <span className="flex items-center gap-1">
-                    <TabletSmartphone className="w-3 h-3" />
-                    Android
-                  </span>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Android Card */}
+          <Card className="group relative overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            <CardHeader className="relative z-10 pb-4">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-2 rounded-lg bg-primary/10">
+                  <TabletSmartphone className="w-6 h-6 text-primary" />
                 </div>
+                <CardTitle className="text-2xl font-bold text-foreground">
+                  {android}
+                </CardTitle>
+              </div>
+            </CardHeader>
+            
+            <CardContent className="relative z-10">
+              <div className="relative group-hover:scale-105 transition-transform duration-500">
+                <div className="w-full aspect-square bg-white rounded-2xl p-6 shadow-lg border-2 border-gray-100">
+                  <img 
+                    src="/lovable-uploads/2923158d-96b1-4bb0-8baa-047760828b66.png" 
+                    alt="Android QR Code" 
+                    className="w-full h-full object-contain filter contrast-110" 
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
+              <div className="mt-6 text-center">
+                <p className="text-sm text-muted-foreground">
+                  {language === 'en' ? 'Scan with any QR code reader' : '使用任意二维码扫描器'}
+                </p>
               </div>
             </CardContent>
           </Card>
