@@ -114,7 +114,10 @@
     @apply bg-background text-foreground;
     font-family: 'Noto Sans SC', 'Inter', sans-serif;
     min-width: 1200px;
+    width: 1200px;
     overflow-x: auto;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
   }
 
   /* Custom gradient backgrounds */
