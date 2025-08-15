@@ -70,15 +70,15 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
         <div className="max-w-lg w-full">
           
           {/* Main content area - Clean and Professional */}
-          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 lg:p-10 shadow-xl border border-gray-200/50">
+          <div className="bg-white/30 backdrop-blur-md rounded-2xl p-8 lg:p-10 shadow-xl border border-white/20">
             
             {/* Title Section - Simplified */}
             <div className="mb-8">
-              <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-900 tracking-tight">
+              <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-white tracking-tight drop-shadow-lg">
                 {currentContent.title}
               </h1>
               
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-white/90 leading-relaxed drop-shadow">
                 {currentContent.tagline}
               </p>
             </div>
@@ -88,7 +88,7 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
               <button className="w-full px-6 py-4 bg-rose-500 hover:bg-rose-600 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg shadow-rose-500/25">
                 {currentContent.downloadBtn}
               </button>
-              <button className="w-full px-6 py-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl transition-colors duration-200 border border-gray-200">
+              <button className="w-full px-6 py-4 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg backdrop-blur border border-white/30">
                 {currentContent.trailerBtn}
               </button>
             </div>
@@ -96,8 +96,8 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
             {/* Game Features - Minimal Design */}
             <div className="space-y-3 mb-8">
               {currentContent.features.map((feature, index) => (
-                <div key={index} className="flex items-center gap-3 text-gray-700">
-                  <div className="w-2 h-2 bg-rose-500 rounded-full flex-shrink-0"></div>
+                <div key={index} className="flex items-center gap-3 text-white/90">
+                  <div className="w-2 h-2 bg-white rounded-full flex-shrink-0 drop-shadow"></div>
                   <span className="font-medium text-sm">
                     {feature.text}
                   </span>
@@ -106,11 +106,11 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
             </div>
 
             {/* Stats - Clean Layout */}
-            <div className="grid grid-cols-2 gap-4 pt-6 border-t border-gray-200">
+            <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/30">
               {currentContent.stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-2xl font-bold text-gray-900 mb-1">{stat.value}</div>
-                  <div className="text-sm text-gray-500 font-medium">
+                  <div className="text-2xl font-bold text-white mb-1 drop-shadow">{stat.value}</div>
+                  <div className="text-sm text-white/80 font-medium drop-shadow">
                     {stat.label}
                   </div>
                 </div>
