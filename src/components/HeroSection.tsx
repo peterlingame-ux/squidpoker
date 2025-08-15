@@ -66,9 +66,28 @@ export const HeroSection = ({ language }: LanguageProps) => {
         <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-[#f5f1e8] via-[#f5f1e8] to-transparent"></div>
       </div>
 
-      {/* Content removed - clean background only */}
+      {/* Download Button Section */}
       <div className="relative z-10 min-h-screen flex items-center justify-center">
-        {/* Content area removed */}
+        <div className="text-center">
+          {/* Title */}
+          <h1 className="text-6xl md:text-8xl font-bold mb-4 text-white drop-shadow-2xl tracking-wider">
+            {currentContent.title}
+          </h1>
+          
+          {/* Tagline */}
+          <p className="text-xl md:text-2xl text-white/90 mb-12 drop-shadow-lg max-w-2xl mx-auto">
+            {currentContent.tagline}
+          </p>
+          
+          {/* Download Button */}
+          <Button 
+            className="px-12 py-6 text-xl font-bold bg-primary hover:bg-primary/90 text-white rounded-2xl shadow-2xl hover:scale-105 transition-all duration-300"
+            size="lg"
+            onClick={() => scrollToSection('download-section')}
+          >
+            {currentContent.downloadBtn}
+          </Button>
+        </div>
       </div>
 
       {/* Minimal decorative elements */}
