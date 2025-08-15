@@ -69,28 +69,28 @@ export const HeroSection = ({ language }: LanguageProps) => {
         <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-[#f5f1e8] via-[#f5f1e8] to-transparent"></div>
       </div>
 
-      {/* Content positioned to right */}
-      <div className="relative z-10 min-h-screen flex items-center justify-end px-6 lg:px-16">
-        <div className="max-w-lg w-full">
+      {/* Content positioned responsively */}
+      <div className="relative z-10 min-h-screen flex items-center justify-center md:justify-end px-4 sm:px-6 lg:px-16">
+        <div className="max-w-lg w-full md:max-w-md lg:max-w-lg">
           
-          {/* Main content area - Clean and Professional */}
-          <div className="bg-white/30 backdrop-blur-md rounded-2xl p-8 lg:p-10 shadow-xl border border-white/20">
+          {/* Main content area - Responsive and Clean */}
+          <div className="bg-white/30 backdrop-blur-md rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl border border-white/20">
             
-            {/* Title Section - Simplified */}
-            <div className="mb-8">
-              <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-white tracking-tight drop-shadow-lg">
+            {/* Title Section - Responsive */}
+            <div className="mb-6 md:mb-8">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-white tracking-tight drop-shadow-lg">
                 {currentContent.title}
               </h1>
               
-              <p className="text-lg text-white/90 leading-relaxed drop-shadow">
+              <p className="text-base sm:text-lg text-white/90 leading-relaxed drop-shadow">
                 {currentContent.tagline}
               </p>
             </div>
             
-            {/* Action Buttons - Clean Design */}
-            <div className="flex flex-col gap-3 mb-8">
+            {/* Action Buttons - Responsive Design */}
+            <div className="flex flex-col sm:flex-row md:flex-col gap-3 mb-6 md:mb-8">
               <Button 
-                className="w-full py-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl shadow-lg"
+                className="w-full py-3 md:py-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl shadow-lg text-sm md:text-base"
                 size="lg"
                 onClick={() => scrollToSection('download-section')}
               >
@@ -98,31 +98,31 @@ export const HeroSection = ({ language }: LanguageProps) => {
               </Button>
               <Button 
                 variant="outline" 
-                className="w-full py-4 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-xl backdrop-blur border-white/30"
+                className="w-full py-3 md:py-4 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-xl backdrop-blur border-white/30 text-sm md:text-base"
                 size="lg"
               >
                 {currentContent.trailerBtn}
               </Button>
             </div>
 
-            {/* Game Features - Minimal Design */}
-            <div className="space-y-3 mb-8">
+            {/* Game Features - Responsive Design */}
+            <div className="space-y-2 md:space-y-3 mb-6 md:mb-8">
               {currentContent.features.map((feature, index) => (
                 <div key={index} className="flex items-center gap-3 text-white/90">
                   <div className="w-2 h-2 bg-white rounded-full flex-shrink-0 drop-shadow"></div>
-                  <span className="font-medium text-sm">
+                  <span className="font-medium text-xs sm:text-sm">
                     {feature.text}
                   </span>
                 </div>
               ))}
             </div>
 
-            {/* Stats - Clean Layout */}
-            <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/30">
+            {/* Stats - Responsive Layout */}
+            <div className="grid grid-cols-2 gap-3 md:gap-4 pt-4 md:pt-6 border-t border-white/30">
               {currentContent.stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-2xl font-bold text-white mb-1 drop-shadow">{stat.value}</div>
-                  <div className="text-sm text-white/80 font-medium drop-shadow">
+                  <div className="text-xl md:text-2xl font-bold text-white mb-1 drop-shadow">{stat.value}</div>
+                  <div className="text-xs md:text-sm text-white/80 font-medium drop-shadow">
                     {stat.label}
                   </div>
                 </div>
