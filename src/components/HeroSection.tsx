@@ -9,7 +9,6 @@ export const HeroSection = ({ language }: LanguageProps) => {
       title: "SQUIDPOKER",
       tagline: "Bet it all to survive the ultimate poker challenge",
       downloadBtn: "Download Now",
-      trailerBtn: "Watch Trailer",
       features: [
         { text: "Texas Hold'em Rules" },
         { text: "Survival Mode" },
@@ -24,7 +23,6 @@ export const HeroSection = ({ language }: LanguageProps) => {
       title: "鱿鱼扑克",
       tagline: "赌上全部，在终极扑克生存挑战中生存下来",
       downloadBtn: "立即下载",
-      trailerBtn: "观看预告",
       features: [
         { text: "德州扑克规则" },
         { text: "生存模式" },
@@ -39,7 +37,6 @@ export const HeroSection = ({ language }: LanguageProps) => {
       title: "오징어 포커",
       tagline: "최후의 포커 도전에서 살아남기 위해 모든 것을 걸어라",
       downloadBtn: "지금 다운로드",
-      trailerBtn: "예고편 보기",
       features: [
         { text: "텍사스 홀덤 규칙" },
         { text: "서바이벌 모드" },
@@ -87,21 +84,14 @@ export const HeroSection = ({ language }: LanguageProps) => {
               </p>
             </div>
             
-            {/* Action Buttons - Responsive Design */}
-            <div className="flex flex-col sm:flex-row md:flex-col gap-3 mb-6 md:mb-8">
+            {/* Action Button - Download Only */}
+            <div className="mb-6 md:mb-8">
               <Button 
                 className="w-full py-3 md:py-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl shadow-lg text-sm md:text-base"
                 size="lg"
                 onClick={() => scrollToSection('download-section')}
               >
                 {currentContent.downloadBtn}
-              </Button>
-              <Button 
-                variant="outline" 
-                className="w-full py-3 md:py-4 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-xl backdrop-blur border-white/30 text-sm md:text-base"
-                size="lg"
-              >
-                {currentContent.trailerBtn}
               </Button>
             </div>
 
