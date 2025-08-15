@@ -69,7 +69,10 @@ export const DownloadSection = ({ language }: DownloadSectionProps) => {
   const { title, subtitle, ios, android, description, scanText, stats, features } = content[language];
 
   return (
-    <section className="py-24 px-4 sm:px-6 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden">
+    <section 
+      id="download-section"
+      className="py-24 px-4 sm:px-6 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden"
+    >
       {/* Professional Background Elements */}
       <div className="absolute inset-0">
         {/* Grid Pattern */}
