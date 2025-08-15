@@ -1,12 +1,24 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import { LanguageToggle } from '@/components/LanguageToggle';
+import { HeroSection } from '@/components/HeroSection';
+import { RulesSection } from '@/components/RulesSection';
+import { FeaturesSection } from '@/components/FeaturesSection';
+import { DownloadSection } from '@/components/DownloadSection';
 
 const Index = () => {
+  const [language, setLanguage] = useState<'en' | 'zh'>('en');
+
+  const handleLanguageChange = (lang: 'en' | 'zh') => {
+    setLanguage(lang);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <LanguageToggle onLanguageChange={handleLanguageChange} />
+      <HeroSection language={language} />
+      <RulesSection language={language} />
+      <FeaturesSection language={language} />
+      <DownloadSection language={language} />
     </div>
   );
 };

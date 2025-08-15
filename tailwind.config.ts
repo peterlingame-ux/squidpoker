@@ -52,6 +52,14 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Squid Game theme colors
+				'squid-pink': 'hsl(var(--squid-pink))',
+				'squid-pink-dark': 'hsl(var(--squid-pink-dark))',
+				'squid-pink-light': 'hsl(var(--squid-pink-light))',
+				'sky-blue': 'hsl(var(--sky-blue))',
+				'ground-green': 'hsl(var(--ground-green))',
+				'guard-black': 'hsl(var(--guard-black))',
+				'player-teal': 'hsl(var(--player-teal))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
