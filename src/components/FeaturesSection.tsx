@@ -1,11 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Triangle, Circle, Square } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface FeaturesSectionProps {
   language: 'en' | 'zh' | 'ko';
 }
 
 export const FeaturesSection = ({ language }: FeaturesSectionProps) => {
+  const isMobile = useIsMobile();
+  
   const content = {
     en: {
       title: "Game Features",
@@ -84,7 +87,9 @@ export const FeaturesSection = ({ language }: FeaturesSectionProps) => {
   const { title, subtitle, features } = content[language];
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-br from-pink-500 via-pink-600 to-red-500 relative overflow-hidden">
+    <section className={`relative overflow-hidden bg-gradient-to-br from-pink-500 via-pink-600 to-red-500 ${
+      isMobile ? 'py-16 px-4' : 'py-20 px-6'
+    }`}>
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:40px_40px]" />
       <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
@@ -92,24 +97,34 @@ export const FeaturesSection = ({ language }: FeaturesSectionProps) => {
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8">
+        <div className={`text-center ${isMobile ? 'mb-12' : 'mb-16'}`}>
+          <div className={`inline-flex items-center gap-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6 ${
+            isMobile ? 'px-4 py-2' : 'px-6 py-3'
+          }`}>
             <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-            <span className="text-sm font-semibold text-white uppercase tracking-wider">
+            <span className={`font-semibold text-white uppercase tracking-wider ${
+              isMobile ? 'text-xs' : 'text-sm'
+            }`}>
               {language === 'en' ? 'Features' : language === 'zh' ? '特色功能' : '특징'}
             </span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+          <h2 className={`font-bold mb-4 sm:mb-6 text-white ${
+            isMobile ? 'text-2xl sm:text-3xl' : 'text-4xl md:text-5xl'
+          }`}>
             {title}
           </h2>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+          <p className={`text-white/90 max-w-3xl mx-auto leading-relaxed ${
+            isMobile ? 'text-base sm:text-lg' : 'text-xl'
+          }`}>
             {subtitle}
           </p>
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className={`grid gap-6 sm:gap-8 ${
+          isMobile ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-3'
+        }`}>
           {features.map((feature, index) => {
             const IconComponent = feature.icon;
             return (
@@ -121,28 +136,38 @@ export const FeaturesSection = ({ language }: FeaturesSectionProps) => {
                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 <CardHeader className="relative z-10 text-center pb-4">
-                  <div className="mx-auto mb-6 relative">
-                    <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <IconComponent className="w-10 h-10 text-white" strokeWidth={1.5} />
+                  <div className="mx-auto mb-4 sm:mb-6 relative">
+                    <div className={`rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 ${
+                      isMobile ? 'w-16 h-16' : 'w-20 h-20'
+                    }`}>
+                      <IconComponent className={`text-white strokeWidth={1.5} ${
+                        isMobile ? 'w-8 h-8' : 'w-10 h-10'
+                      }`} />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                   
-                  <CardTitle className="text-2xl font-bold text-white mb-2 group-hover:text-white/90 transition-colors duration-300">
+                  <CardTitle className={`font-bold mb-2 group-hover:text-white/90 transition-colors duration-300 ${
+                    isMobile ? 'text-xl' : 'text-2xl'
+                  }`}>
                     {feature.title}
                   </CardTitle>
                   <div className="w-16 h-0.5 bg-white/30 mx-auto group-hover:bg-white/60 transition-colors duration-300" />
                 </CardHeader>
                 
                 <CardContent className="relative z-10 text-center">
-                  <p className="text-white/90 leading-relaxed">
+                  <p className={`text-white/90 leading-relaxed ${
+                    isMobile ? 'text-sm' : 'text-base'
+                  }`}>
                     {feature.description}
                   </p>
                   
                   {/* Hover indicator */}
-                  <div className="mt-6 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="mt-4 sm:mt-6 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="w-1.5 h-1.5 bg-white rounded-full" />
-                    <span className="text-xs font-medium text-white uppercase tracking-wider">
+                    <span className={`font-medium text-white uppercase tracking-wider ${
+                      isMobile ? 'text-xs' : 'text-xs'
+                    }`}>
                       {language === 'en' ? 'Learn More' : language === 'zh' ? '了解更多' : '더 알아보기'}
                     </span>
                   </div>
@@ -153,13 +178,17 @@ export const FeaturesSection = ({ language }: FeaturesSectionProps) => {
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-6 px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20">
+        <div className={`mt-12 sm:mt-16 text-center`}>
+          <div className={`inline-flex items-center gap-4 sm:gap-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 ${
+            isMobile ? 'px-6 py-3 flex-col sm:flex-row' : 'px-8 py-4'
+          }`}>
             <div className="flex items-center gap-2 text-sm text-white/90">
               <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
               {language === 'en' ? 'Survival-Based Gameplay' : language === 'zh' ? '生存类游戏玩法' : '서바이벌 기반 게임플레이'}
             </div>
-            <div className="w-px h-4 bg-white/30" />
+            <div className={`bg-white/30 ${
+              isMobile ? 'w-full h-px sm:w-px sm:h-4' : 'w-px h-4'
+            }`} />
             <div className="text-sm text-white/90">
               {language === 'en' ? 'High Stakes Competition' : language === 'zh' ? '高风险竞技' : '고위험 경쟁'}
             </div>

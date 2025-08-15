@@ -1,11 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Spade, Users, Target, Trophy } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface RulesSectionProps {
   language: 'en' | 'zh' | 'ko';
 }
 
 export const RulesSection = ({ language }: RulesSectionProps) => {
+  const isMobile = useIsMobile();
   const content = {
     en: {
       title: "Texas Hold'em Rules Overview",
@@ -90,7 +92,9 @@ export const RulesSection = ({ language }: RulesSectionProps) => {
   const { title, subtitle, rules } = content[language];
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+    <section className={`relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 ${
+      isMobile ? 'py-16 px-4' : 'py-20 px-6'
+    }`}>
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:30px_30px]" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -98,24 +102,34 @@ export const RulesSection = ({ language }: RulesSectionProps) => {
       
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-600/30 mb-8">
+        <div className={`text-center ${isMobile ? 'mb-12' : 'mb-16'}`}>
+          <div className={`inline-flex items-center gap-3 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-600/30 mb-6 ${
+            isMobile ? 'px-4 py-2' : 'px-6 py-3'
+          }`}>
             <Spade className="w-5 h-5 text-primary" />
-            <span className="text-sm font-semibold text-slate-300 uppercase tracking-wider">
+            <span className={`font-semibold text-slate-300 uppercase tracking-wider ${
+              isMobile ? 'text-xs' : 'text-sm'
+            }`}>
               {language === 'en' ? 'Game Rules' : language === 'zh' ? '游戏规则' : '게임 규칙'}
             </span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+          <h2 className={`font-bold mb-4 sm:mb-6 text-white ${
+            isMobile ? 'text-2xl sm:text-3xl' : 'text-4xl md:text-5xl'
+          }`}>
             {title}
           </h2>
-          <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+          <p className={`text-slate-400 max-w-3xl mx-auto leading-relaxed ${
+            isMobile ? 'text-base sm:text-lg' : 'text-xl'
+          }`}>
             {subtitle}
           </p>
         </div>
 
         {/* Rules Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className={`grid gap-4 sm:gap-6 ${
+          isMobile ? 'grid-cols-1' : 'md:grid-cols-2'
+        }`}>
           {rules.map((rule, index) => {
             const IconComponent = rule.icon;
             return (
@@ -126,12 +140,20 @@ export const RulesSection = ({ language }: RulesSectionProps) => {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 <CardHeader className="relative z-10 pb-4">
-                  <div className="flex items-center gap-4 mb-3">
-                    <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-                      <IconComponent className="w-7 h-7 text-primary" />
+                  <div className={`flex items-center gap-3 sm:gap-4 mb-3 ${
+                    isMobile ? 'flex-col sm:flex-row text-center sm:text-left' : ''
+                  }`}>
+                    <div className={`flex-shrink-0 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300 ${
+                      isMobile ? 'w-12 h-12' : 'w-14 h-14'
+                    }`}>
+                      <IconComponent className={`text-primary ${
+                        isMobile ? 'w-6 h-6' : 'w-7 h-7'
+                      }`} />
                     </div>
                     <div className="flex-grow">
-                      <CardTitle className="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors duration-300">
+                      <CardTitle className={`font-bold mb-1 group-hover:text-primary transition-colors duration-300 ${
+                        isMobile ? 'text-lg' : 'text-xl'
+                      }`}>
                         {rule.title}
                       </CardTitle>
                       <div className="w-12 h-0.5 bg-primary/30 group-hover:bg-primary/60 transition-colors duration-300" />
@@ -140,7 +162,9 @@ export const RulesSection = ({ language }: RulesSectionProps) => {
                 </CardHeader>
                 
                 <CardContent className="relative z-10 pt-0">
-                  <p className="text-slate-300 leading-relaxed text-base">
+                  <p className={`text-slate-300 leading-relaxed ${
+                    isMobile ? 'text-sm' : 'text-base'
+                  }`}>
                     {rule.description}
                   </p>
                 </CardContent>
@@ -150,13 +174,17 @@ export const RulesSection = ({ language }: RulesSectionProps) => {
         </div>
 
         {/* Bottom Info */}
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-6 px-8 py-4 rounded-2xl bg-slate-800/30 backdrop-blur-sm border border-slate-600/30">
+        <div className={`mt-12 sm:mt-16 text-center`}>
+          <div className={`inline-flex items-center gap-4 sm:gap-6 rounded-2xl bg-slate-800/30 backdrop-blur-sm border border-slate-600/30 ${
+            isMobile ? 'px-6 py-3 flex-col sm:flex-row' : 'px-8 py-4'
+          }`}>
             <div className="flex items-center gap-2 text-sm text-slate-400">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
               {language === 'en' ? 'Official Texas Hold\'em Rules' : language === 'zh' ? '官方德州扑克规则' : '공식 텍사스 홀덤 규칙'}
             </div>
-            <div className="w-px h-4 bg-slate-600/50" />
+            <div className={`bg-slate-600/50 ${
+              isMobile ? 'w-full h-px sm:w-px sm:h-4' : 'w-px h-4'
+            }`} />
             <div className="text-sm text-slate-400">
               {language === 'en' ? 'WSOP Approved' : language === 'zh' ? 'WSOP认证' : 'WSOP 인증'}
             </div>

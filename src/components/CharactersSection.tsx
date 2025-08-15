@@ -1,10 +1,13 @@
 import { Card, CardContent } from '@/components/ui/card';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface CharactersSectionProps {
   language: 'en' | 'zh' | 'ko';
 }
 
 export const CharactersSection = ({ language }: CharactersSectionProps) => {
+  const isMobile = useIsMobile();
+  
   const content = {
     en: {
       title: "Meet the Players",
@@ -71,7 +74,7 @@ export const CharactersSection = ({ language }: CharactersSectionProps) => {
           name: "Red Guard",
           role: "Supervisor",
           description: "High-ranking game administrator",
-          image: "/lovable-uploads/55c6cf57-7c3f-466f-a7c8-bd4a8c4d582f.png"
+          image: "/lovable-uploads/55c6cf57-c3f-466f-a7c8-bd4a8c4d582f.png"
         }
       ]
     },
@@ -140,7 +143,7 @@ export const CharactersSection = ({ language }: CharactersSectionProps) => {
           name: "红衣守卫",
           role: "监督员",
           description: "高级游戏管理员",
-          image: "/lovable-uploads/55c6cf57-7c3f-466f-a7c8-bd4a8c4d582f.png"
+          image: "/lovable-uploads/55c6cf57-c3f-466f-a7c8-bd4a8c4d582f.png"
         }
       ]
     },
@@ -209,7 +212,7 @@ export const CharactersSection = ({ language }: CharactersSectionProps) => {
           name: "빨간 가드",
           role: "감독관",
           description: "고급 게임 관리자",
-          image: "/lovable-uploads/55c6cf57-7c3f-466f-a7c8-bd4a8c4d582f.png"
+          image: "/lovable-uploads/55c6cf57-c3f-466f-a7c8-bd4a8c4d582f.png"
         }
       ]
     }
@@ -218,7 +221,9 @@ export const CharactersSection = ({ language }: CharactersSectionProps) => {
   const { title, subtitle, characters } = content[language];
 
   return (
-    <section className="py-16 lg:py-20 px-4 lg:px-6 bg-gradient-to-br from-background via-secondary/5 to-accent/10 relative overflow-hidden">
+    <section className={`relative overflow-hidden bg-gradient-to-br from-background via-secondary/5 to-accent/10 ${
+      isMobile ? 'py-12 px-4' : 'py-16 lg:py-20 px-4 lg:px-6'
+    }`}>
       {/* Background decorative elements */}
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:60px_60px]" />
       <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse" />
@@ -226,23 +231,36 @@ export const CharactersSection = ({ language }: CharactersSectionProps) => {
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-12 lg:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 lg:px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4 lg:mb-6">
+        <div className={`text-center ${isMobile ? 'mb-8' : 'mb-12 lg:mb-16'}`}>
+          <div className={`inline-flex items-center gap-2 px-3 lg:px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4 lg:mb-6 ${
+            isMobile ? 'px-3 py-1.5' : ''
+          }`}>
             <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-            <span className="text-xs lg:text-sm font-medium text-primary">
+            <span className={`font-medium text-primary ${
+              isMobile ? 'text-xs' : 'text-xs lg:text-sm'
+            }`}>
               {language === 'en' ? 'Character Selection' : language === 'zh' ? '角色选择' : '캐릭터 선택'}
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 text-foreground">
+          <h2 className={`font-bold mb-4 lg:mb-6 text-foreground ${
+            isMobile ? 'text-2xl sm:text-3xl' : 'text-3xl sm:text-4xl lg:text-5xl'
+          }`}>
             {title}
           </h2>
-          <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
+          <p className={`text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4 ${
+            isMobile ? 'text-base' : 'text-lg lg:text-xl'
+          }`}>
             {subtitle}
           </p>
         </div>
 
         {/* Characters Grid - Mobile optimized */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">{characters.map((character, index) => (
+        <div className={`grid gap-4 lg:gap-8 ${
+          isMobile 
+            ? 'grid-cols-1 sm:grid-cols-2' 
+            : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+        }`}>
+          {characters.map((character, index) => (
             <Card 
               key={character.id} 
               className="group relative overflow-hidden bg-card/80 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 cursor-pointer"
@@ -263,24 +281,32 @@ export const CharactersSection = ({ language }: CharactersSectionProps) => {
                   </div>
                   
                   {/* Role Badge - Mobile optimized */}
-                  <div className="absolute top-2 lg:top-4 right-2 lg:right-4 px-2 lg:px-3 py-1 rounded-full bg-primary/90 backdrop-blur-sm text-primary-foreground text-xs font-medium">
+                  <div className={`absolute top-2 lg:top-4 right-2 lg:right-4 px-2 lg:px-3 py-1 rounded-full bg-primary/90 backdrop-blur-sm text-primary-foreground font-medium ${
+                    isMobile ? 'text-xs' : 'text-xs'
+                  }`}>
                     {character.role}
                   </div>
                 </div>
 
                 {/* Character Info - Mobile optimized */}
-                <div className="p-4 lg:p-6">
-                  <h3 className="text-lg lg:text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                <div className={`${isMobile ? 'p-3' : 'p-4 lg:p-6'}`}>
+                  <h3 className={`font-bold mb-2 group-hover:text-primary transition-colors duration-300 ${
+                    isMobile ? 'text-base' : 'text-lg lg:text-xl'
+                  }`}>
                     {character.name}
                   </h3>
-                  <p className="text-muted-foreground text-sm lg:text-base leading-relaxed">
+                  <p className={`text-muted-foreground leading-relaxed ${
+                    isMobile ? 'text-xs' : 'text-sm lg:text-base'
+                  }`}>
                     {character.description}
                   </p>
                   
                   {/* Hover Effect Indicator */}
-                  <div className="mt-4 flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="mt-3 lg:mt-4 flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                    <span className="text-xs font-medium">
+                    <span className={`font-medium ${
+                      isMobile ? 'text-xs' : 'text-xs'
+                    }`}>
                       {language === 'en' ? 'Select Character' : language === 'zh' ? '选择角色' : '캐릭터 선택'}
                     </span>
                   </div>
@@ -291,13 +317,17 @@ export const CharactersSection = ({ language }: CharactersSectionProps) => {
         </div>
 
         {/* Bottom Call to Action */}
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-6 px-8 py-4 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50">
+        <div className={`mt-12 lg:mt-16 text-center`}>
+          <div className={`inline-flex items-center gap-4 lg:gap-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 ${
+            isMobile ? 'px-6 py-3 flex-col sm:flex-row' : 'px-8 py-4'
+          }`}>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
               {language === 'en' ? '9 Unique Characters' : language === 'zh' ? '9个独特角色' : '9개의 독특한 캐릭터'}
             </div>
-            <div className="w-px h-4 bg-border" />
+            <div className={`bg-border ${
+              isMobile ? 'w-full h-px sm:w-px sm:h-4' : 'w-px h-4'
+            }`} />
             <div className="text-sm text-muted-foreground">
               {language === 'en' ? 'Each with Special Abilities' : language === 'zh' ? '每个都有特殊能力' : '각자 특별한 능력 보유'}
             </div>

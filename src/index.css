@@ -215,3 +215,141 @@
   transform: rotateY(180deg);
   z-index: 1;
 }
+
+/* Mobile-specific optimizations */
+@layer utilities {
+  /* Touch-friendly button sizes */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  /* Mobile-optimized spacing */
+  .mobile-padding {
+    @apply px-4 sm:px-6;
+  }
+  
+  .mobile-margin {
+    @apply my-4 sm:my-6;
+  }
+  
+  /* Mobile-optimized text sizes */
+  .mobile-text-sm {
+    @apply text-sm sm:text-base;
+  }
+  
+  .mobile-text-base {
+    @apply text-base sm:text-lg;
+  }
+  
+  .mobile-text-lg {
+    @apply text-lg sm:text-xl;
+  }
+  
+  .mobile-text-xl {
+    @apply text-xl sm:text-2xl;
+  }
+  
+  .mobile-text-2xl {
+    @apply text-2xl sm:text-3xl;
+  }
+  
+  .mobile-text-3xl {
+    @apply text-3xl sm:text-4xl;
+  }
+  
+  /* Mobile-optimized grid layouts */
+  .mobile-grid-1 {
+    @apply grid-cols-1;
+  }
+  
+  .mobile-grid-2 {
+    @apply grid-cols-1 sm:grid-cols-2;
+  }
+  
+  .mobile-grid-3 {
+    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+  }
+  
+  /* Mobile-optimized spacing */
+  .mobile-gap {
+    @apply gap-4 sm:gap-6;
+  }
+  
+  .mobile-gap-lg {
+    @apply gap-6 sm:gap-8;
+  }
+  
+  /* Mobile-optimized padding */
+  .mobile-py {
+    @apply py-12 sm:py-16;
+  }
+  
+  .mobile-py-lg {
+    @apply py-16 sm:py-20;
+  }
+  
+  .mobile-py-xl {
+    @apply py-20 sm:py-24;
+  }
+}
+
+/* Mobile-specific animations */
+@layer components {
+  .mobile-fade-in {
+    animation: mobileFadeIn 0.6s ease-out;
+  }
+  
+  .mobile-scale-in {
+    animation: mobileScaleIn 0.4s ease-out;
+  }
+}
+
+@keyframes mobileFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mobileScaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Mobile touch optimizations */
+@media (max-width: 768px) {
+  /* Ensure buttons are touch-friendly */
+  button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Optimize card interactions for mobile */
+  .card-interactive {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .card-interactive:active {
+    transform: scale(0.98);
+  }
+  
+  /* Mobile-optimized shadows */
+  .mobile-shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Mobile-optimized borders */
+  .mobile-border {
+    border-width: 1px;
+  }
+}
