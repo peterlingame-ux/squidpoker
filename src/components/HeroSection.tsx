@@ -57,13 +57,17 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
 
   return (
     <section className="relative min-h-screen overflow-hidden" style={{ backgroundColor: '#f5f1e8' }}>
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center" style={{ backgroundColor: '#f5f1e8' }}>
+      {/* Background Image with natural color extension */}
+      <div className="absolute inset-0 z-0">
         <img 
           src="/lovable-uploads/b03c5211-f310-42bd-af44-a2dcc98b72c8.png"
           alt="Squid Poker Characters Background" 
-          className="h-full object-contain object-center"
+          className="w-full h-full object-cover object-center"
         />
+        {/* Left side color extension */}
+        <div className="absolute left-0 top-0 w-1/4 h-full bg-gradient-to-r from-[#f5f1e8] to-transparent"></div>
+        {/* Right side color extension */}
+        <div className="absolute right-0 top-0 w-1/4 h-full bg-gradient-to-l from-[#f5f1e8] to-transparent"></div>
       </div>
 
       {/* Content positioned to right */}
