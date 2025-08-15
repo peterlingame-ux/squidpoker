@@ -7,7 +7,7 @@ interface LanguageToggleProps {
 }
 
 export const LanguageToggle = ({ onLanguageChange }: LanguageToggleProps) => {
-  const [currentLang, setCurrentLang] = useState<Language>('en');
+  const [currentLang, setCurrentLang] = useState<Language>('ko');
 
   const handleLanguageChange = (lang: Language) => {
     setCurrentLang(lang);

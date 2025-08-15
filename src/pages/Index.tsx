@@ -8,7 +8,7 @@ import { DownloadSection } from '@/components/DownloadSection';
 import { Language } from '@/types/common';
 
 const Index = () => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>('ko');
 
   const handleLanguageChange = useCallback((lang: Language) => {
     setLanguage(lang);
