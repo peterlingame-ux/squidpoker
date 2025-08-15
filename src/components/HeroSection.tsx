@@ -4,108 +4,94 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ language }: HeroSectionProps) => {
   return (
-    <section className="relative min-h-screen overflow-hidden">
-      {/* Full Background Image */}
-      <div className="absolute inset-0 z-0">
+    <section className="relative w-full h-screen overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
         <img 
           src="/lovable-uploads/274b91c8-b439-4b9d-adcd-706a795d15d0.png"
           alt="Squid Poker Background" 
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover"
         />
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/10"></div>
       </div>
 
-      {/* Content positioned to avoid overlapping with characters */}
-      <div className="relative z-10 min-h-screen flex items-center justify-end px-4 lg:px-12">
-        <div className="max-w-xl w-full lg:mr-12">
-          
-          {/* Main content area positioned on the right side */}
-          <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 lg:p-12 shadow-2xl border border-white/20 animate-fade-in">
+      {/* Content Container */}
+      <div className="relative z-10 h-full flex items-center justify-end px-8 lg:px-16">
+        {/* Right side content panel */}
+        <div className="w-full max-w-md lg:max-w-lg">
+          <div className="bg-white/95 backdrop-blur-md rounded-3xl p-6 lg:p-8 shadow-2xl">
             
-            {/* Title Section */}
-            <div className="text-center mb-8">
-              <h1 className="text-3xl lg:text-4xl font-extrabold mb-4 text-gray-900 leading-tight">
+            {/* Logo Section */}
+            <div className="text-center mb-6">
+              <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
                 鱿鱼扑克
               </h1>
-              <h2 className="text-2xl lg:text-3xl font-bold text-squid-pink mb-6 tracking-wider">
+              <h2 className="text-xl lg:text-2xl font-bold text-pink-600 mb-4 tracking-wide">
                 SQUIDPOKER
               </h2>
-              
-              <p className="text-lg lg:text-xl font-semibold text-gray-800 leading-relaxed">
+              <p className="text-base lg:text-lg text-gray-800 leading-relaxed">
                 {language === 'en' 
                   ? "Bet it all to survive the ultimate poker challenge!"
                   : "赌上全部，在终极扑克生存挑战中生存下来！"
                 }
               </p>
             </div>
-            
+
             {/* Action Buttons */}
-            <div className="flex flex-col gap-4 mb-8">
-              <button className="w-full px-8 py-4 bg-squid-pink hover:bg-squid-pink-dark text-white font-bold rounded-xl text-lg hover-lift transition-all duration-300 shadow-lg hover:shadow-xl">
+            <div className="space-y-3 mb-6">
+              <button className="w-full py-3 px-6 bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-xl transition-colors duration-200">
                 {language === 'en' ? '立即下载' : '立即下载'}
               </button>
-              <button className="w-full px-8 py-4 bg-gray-600 hover:bg-gray-700 text-white font-bold rounded-xl text-lg hover-lift transition-all duration-300 shadow-lg">
+              <button className="w-full py-3 px-6 bg-gray-600 hover:bg-gray-700 text-white font-bold rounded-xl transition-colors duration-200">
                 {language === 'en' ? '观看预告' : '观看预告'}
               </button>
             </div>
 
-            {/* Game Features Quick Info */}
-            <div className="space-y-4">
+            {/* Game Features */}
+            <div className="space-y-3">
               <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                <div className="w-8 h-8 bg-squid-pink rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">♠</span>
+                <div className="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center">
+                  <span className="text-white text-sm font-bold">♠</span>
                 </div>
-                <span className="text-gray-800 font-medium">
+                <span className="text-gray-700 text-sm font-medium">
                   {language === 'en' ? 'Texas Hold\'em Rules' : '德州扑克规则'}
                 </span>
               </div>
-              
+
               <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                <div className="w-8 h-8 bg-player-teal rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">⚡</span>
+                <div className="w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center">
+                  <span className="text-white text-sm font-bold">⚡</span>
                 </div>
-                <span className="text-gray-800 font-medium">
+                <span className="text-gray-700 text-sm font-medium">
                   {language === 'en' ? 'Survival Mode' : '生存模式'}
                 </span>
               </div>
-              
+
               <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                 <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">🏆</span>
+                  <span className="text-white text-sm font-bold">🏆</span>
                 </div>
-                <span className="text-gray-800 font-medium">
-                  {language === 'en' ? 'Tournament Play' : '锦标赛模式'}
+                <span className="text-gray-700 text-sm font-medium">
+                  {language === 'en' ? 'Tournament Mode' : '锦标赛模式'}
                 </span>
               </div>
             </div>
-          </div>
-          
-          {/* Additional floating info cards */}
-          <div className="mt-6 grid grid-cols-2 gap-4">
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 text-center shadow-lg animate-scale-in" style={{ animationDelay: '0.2s' }}>
-              <div className="text-2xl font-bold text-squid-pink mb-1">100K+</div>
-              <div className="text-sm text-gray-700 font-medium">
-                {language === 'en' ? 'Players' : '在线玩家'}
-              </div>
-            </div>
-            
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 text-center shadow-lg animate-scale-in" style={{ animationDelay: '0.4s' }}>
-              <div className="text-2xl font-bold text-squid-pink mb-1">4.8★</div>
-              <div className="text-sm text-gray-700 font-medium">
-                {language === 'en' ? 'Rating' : '用户评分'}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Subtle decorative elements that don't interfere with the background */}
-      <div className="absolute bottom-8 left-8 z-20 opacity-60">
-        <div className="flex gap-2">
-          <div className="w-3 h-3 bg-squid-pink rounded-full animate-pulse"></div>
-          <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-          <div className="w-3 h-3 bg-player-teal rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-3 mt-6">
+              <div className="bg-pink-50 rounded-lg p-3 text-center">
+                <div className="text-lg font-bold text-pink-600">100K+</div>
+                <div className="text-xs text-gray-600">
+                  {language === 'en' ? 'Players' : '玩家'}
+                </div>
+              </div>
+              <div className="bg-pink-50 rounded-lg p-3 text-center">
+                <div className="text-lg font-bold text-pink-600">4.8★</div>
+                <div className="text-xs text-gray-600">
+                  {language === 'en' ? 'Rating' : '评分'}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
