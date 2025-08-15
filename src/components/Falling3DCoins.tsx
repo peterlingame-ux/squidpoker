@@ -1,162 +1,89 @@
-import { useRef, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Text, Cylinder } from '@react-three/drei';
-import { Mesh, Group } from 'three';
-import * as THREE from 'three';
+import { useEffect, useState } from 'react';
 
-interface CoinProps {
-  position: [number, number, number];
-  initialRotation: [number, number, number];
-  fallSpeed: number;
-  rotationSpeed: [number, number, number];
+interface Coin {
+  id: number;
+  x: number;
+  delay: number;
+  duration: number;
+  rotation: number;
 }
 
-const Coin = ({ position, initialRotation, fallSpeed, rotationSpeed }: CoinProps) => {
-  const groupRef = useRef<Group>(null);
-  const coinRef = useRef<Mesh>(null);
-
-  useFrame((state) => {
-    if (!groupRef.current || !coinRef.current) return;
-
-    // 缓慢下落
-    groupRef.current.position.y -= fallSpeed;
-    
-    // 旋转效果
-    groupRef.current.rotation.x += rotationSpeed[0];
-    groupRef.current.rotation.y += rotationSpeed[1];
-    groupRef.current.rotation.z += rotationSpeed[2];
-
-    // 重置位置当硬币掉出视野
-    if (groupRef.current.position.y < -10) {
-      groupRef.current.position.y = 8;
-      groupRef.current.position.x = (Math.random() - 0.5) * 10;
-      groupRef.current.position.z = (Math.random() - 0.5) * 5;
-    }
-  });
-
-  return (
-    <group ref={groupRef} position={position} rotation={initialRotation}>
-      {/* 硬币主体 */}
-      <Cylinder ref={coinRef} args={[1, 1, 0.1, 32]}>
-        <meshStandardMaterial color="#FFD700" metalness={0.8} roughness={0.2} />
-      </Cylinder>
-
-      {/* 硬币边缘装饰圆点 */}
-      {Array.from({ length: 32 }, (_, i) => {
-        const angle = (i / 32) * Math.PI * 2;
-        const x = Math.cos(angle) * 0.85;
-        const z = Math.sin(angle) * 0.85;
-        return (
-          <mesh key={i} position={[x, 0.06, z]}>
-            <sphereGeometry args={[0.03]} />
-            <meshStandardMaterial color="#DAA520" />
-          </mesh>
-        );
-      })}
-
-      {/* 乌贼图案 - 简化为几何形状 */}
-      <group position={[0, 0.06, 0]}>
-        {/* 乌贼身体 */}
-        <mesh position={[0, 0.1, 0]}>
-          <boxGeometry args={[0.4, 0.6, 0.02]} />
-          <meshStandardMaterial color="#B8860B" />
-        </mesh>
-        
-        {/* 乌贼头部 */}
-        <mesh position={[0, 0.5, 0]}>
-          <sphereGeometry args={[0.25, 16, 16]} />
-          <meshStandardMaterial color="#B8860B" />
-        </mesh>
-
-        {/* 乌贼触手 */}
-        {Array.from({ length: 6 }, (_, i) => {
-          const angle = (i / 6) * Math.PI * 2;
-          const x = Math.cos(angle) * 0.2;
-          const z = Math.sin(angle) * 0.2;
-          return (
-            <mesh key={i} position={[x, -0.3, z]}>
-              <cylinderGeometry args={[0.02, 0.02, 0.3]} />
-              <meshStandardMaterial color="#B8860B" />
-            </mesh>
-          );
-        })}
-      </group>
-
-      {/* 几何形状符号 */}
-      <group position={[0, -0.06, 0]} rotation={[Math.PI, 0, 0]}>
-        {/* 三角形 */}
-        <mesh position={[-0.3, 0, -0.3]}>
-          <coneGeometry args={[0.1, 0.15, 3]} />
-          <meshStandardMaterial color="#B8860B" />
-        </mesh>
-
-        {/* 正方形 */}
-        <mesh position={[0, 0, -0.3]}>
-          <boxGeometry args={[0.15, 0.15, 0.02]} />
-          <meshStandardMaterial color="#B8860B" />
-        </mesh>
-
-        {/* 圆形 */}
-        <mesh position={[0.3, 0, -0.3]}>
-          <cylinderGeometry args={[0.08, 0.08, 0.02]} />
-          <meshStandardMaterial color="#B8860B" />
-        </mesh>
-      </group>
-    </group>
-  );
-};
-
 export const Falling3DCoins = () => {
-  // 创建多个硬币的随机属性
-  const coins = Array.from({ length: 8 }, (_, i) => ({
-    position: [
-      (Math.random() - 0.5) * 10,
-      Math.random() * 16 - 2,
-      (Math.random() - 0.5) * 5
-    ] as [number, number, number],
-    initialRotation: [
-      Math.random() * Math.PI * 2,
-      Math.random() * Math.PI * 2,
-      Math.random() * Math.PI * 2
-    ] as [number, number, number],
-    fallSpeed: 0.005 + Math.random() * 0.01,
-    rotationSpeed: [
-      (Math.random() - 0.5) * 0.02,
-      (Math.random() - 0.5) * 0.02,
-      (Math.random() - 0.5) * 0.02
-    ] as [number, number, number]
-  }));
+  const [coins, setCoins] = useState<Coin[]>([]);
+
+  useEffect(() => {
+    // 创建多个硬币
+    const coinArray: Coin[] = Array.from({ length: 12 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100, // 0-100% 位置
+      delay: Math.random() * 8, // 0-8秒延迟
+      duration: 8 + Math.random() * 4, // 8-12秒持续时间
+      rotation: Math.random() * 360, // 初始旋转角度
+    }));
+
+    setCoins(coinArray);
+  }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none">
-      <Canvas
-        camera={{ position: [0, 0, 8], fov: 75 }}
-        style={{ background: 'transparent' }}
-      >
-        {/* 环境光 */}
-        <ambientLight intensity={0.5} />
-        
-        {/* 主光源 */}
-        <directionalLight
-          position={[5, 5, 5]}
-          intensity={1}
-          castShadow
-        />
-        
-        {/* 侧光源 */}
-        <pointLight position={[-5, 3, 2]} intensity={0.5} color="#FFD700" />
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {coins.map((coin) => (
+        <div
+          key={coin.id}
+          className="absolute w-16 h-16 falling-coin opacity-70"
+          style={{
+            left: `${coin.x}%`,
+            animationDelay: `${coin.delay}s`,
+            animationDuration: `${coin.duration}s`,
+            transform: `rotate(${coin.rotation}deg)`,
+          }}
+        >
+          {/* 3D硬币CSS效果 */}
+          <div className="relative w-full h-full coin-3d">
+            {/* 硬币正面 */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-600 shadow-lg transform-gpu coin-face coin-front">
+              {/* 装饰边缘圆点 */}
+              <div className="absolute inset-1 rounded-full border-2 border-yellow-600 border-dotted opacity-60"></div>
+              
+              {/* 乌贼图案 */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-8 h-8 relative">
+                  {/* 乌贼身体 */}
+                  <div className="absolute top-2 left-1/2 w-4 h-6 bg-yellow-700 rounded-full transform -translate-x-1/2"></div>
+                  {/* 乌贼头部 */}
+                  <div className="absolute top-0 left-1/2 w-3 h-3 bg-yellow-700 rounded-full transform -translate-x-1/2"></div>
+                  {/* 触手 */}
+                  <div className="absolute bottom-0 left-1/2 w-6 h-2 transform -translate-x-1/2">
+                    <div className="flex justify-between">
+                      <div className="w-0.5 h-2 bg-yellow-700 rounded"></div>
+                      <div className="w-0.5 h-2 bg-yellow-700 rounded"></div>
+                      <div className="w-0.5 h-2 bg-yellow-700 rounded"></div>
+                      <div className="w-0.5 h-2 bg-yellow-700 rounded"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-        {/* 渲染所有硬币 */}
-        {coins.map((coin, index) => (
-          <Coin
-            key={index}
-            position={coin.position}
-            initialRotation={coin.initialRotation}
-            fallSpeed={coin.fallSpeed}
-            rotationSpeed={coin.rotationSpeed}
-          />
-        ))}
-      </Canvas>
+              {/* 几何符号 */}
+              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
+                {/* 三角形 */}
+                <div className="w-0 h-0 border-l-2 border-r-2 border-b-2 border-transparent border-b-yellow-700"></div>
+                {/* 正方形 */}
+                <div className="w-2 h-2 bg-yellow-700"></div>
+                {/* 圆形 */}
+                <div className="w-2 h-2 bg-yellow-700 rounded-full"></div>
+              </div>
+            </div>
+
+            {/* 硬币背面 */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-700 shadow-lg transform-gpu coin-face coin-back">
+              <div className="absolute inset-1 rounded-full border-2 border-yellow-700 border-dotted opacity-60"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-yellow-800 font-bold text-xs">₩</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
