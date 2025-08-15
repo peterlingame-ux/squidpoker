@@ -113,26 +113,6 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Noto Sans SC', 'Inter', sans-serif;
-    width: 1200px !important;
-    min-width: 1200px !important;
-    -webkit-text-size-adjust: none !important;
-    -moz-text-size-adjust: none !important;
-    -ms-text-size-adjust: none !important;
-    text-size-adjust: none !important;
-    zoom: 1;
-  }
-
-  /* 禁用所有响应式行为 */
-  * {
-    -webkit-text-size-adjust: none !important;
-    -moz-text-size-adjust: none !important;
-    -ms-text-size-adjust: none !important;
-    text-size-adjust: none !important;
-  }
-
-  #root {
-    width: 1200px !important;
-    min-width: 1200px !important;
   }
 
   /* Custom gradient backgrounds */
