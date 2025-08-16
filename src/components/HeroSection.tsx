@@ -65,9 +65,9 @@ export const HeroSection = ({ language }: LanguageProps) => {
           className="w-full h-full object-contain object-center"
         />
         {/* Left side color extension */}
-        <div className="absolute left-0 top-0 w-1/3 h-full bg-gradient-to-r from-[#f5f1e8] via-[#f5f1e8] to-transparent"></div>
+        {/* <div className="absolute left-0 top-0 w-1/3 h-full bg-gradient-to-r from-[#f5f1e8] via-[#f5f1e8] to-transparent"></div> */}
         {/* Right side color extension */}
-        <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-[#f5f1e8] via-[#f5f1e8] to-transparent"></div>
+        {/* <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-[#f5f1e8] via-[#f5f1e8] to-transparent"></div> */}
       </div>
 
       {/* 3D散落硬币效果 */}
