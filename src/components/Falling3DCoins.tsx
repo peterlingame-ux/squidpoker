@@ -19,19 +19,18 @@ export const Falling3DCoins = () => {
     // 根据设备性能和设置调整硬币数量
     const isMobile = window.innerWidth < 768;
     const isLowPerformance = isLowEndMobile();
-    const performance = getDevicePerformance();
     
     let coinCount = 12; // 增加桌面端金币数量
-    let baseDuration = 4; // 基础动画时长
+    let baseDuration = 2.5; // 减少基础动画时长，让金币下落更快
     
     if (isMobile) {
       coinCount = 6; // 移动端增加到6个金币
-      baseDuration = 3;
+      baseDuration = 2;
     }
     
     if (isLowPerformance) {
       coinCount = 4; // 低端设备增加到4个金币
-      baseDuration = 2.5;
+      baseDuration = 1.8;
     }
     
     // 创建多个硬币，增加随机性
@@ -39,18 +38,18 @@ export const Falling3DCoins = () => {
       // 随机起始位置（X轴）
       const x = Math.random() * 85 + 7.5; // 7.5-92.5% 位置，避免完全边缘
       
-      // 随机起始位置（Y轴）
-      const y = Math.random() * 200 - 100; // -100到100px，增加垂直随机性
+      // 随机起始位置（Y轴）- 减少范围，让金币更快开始下落
+      const y = Math.random() * 100 - 50; // -50到50px，减少垂直随机性
       
-      // 随机延迟
-      const delay = Math.random() * 3; // 0-3秒延迟，增加随机性
+      // 随机延迟 - 大幅减少延迟时间
+      const delay = Math.random() * 0.3; // 0-0.3秒延迟，让金币更快开始
       
-      // 随机动画时长
-      const durationVariation = Math.random() * 2 - 1; // -1到+1秒变化
+      // 随机动画时长 - 减少变化范围
+      const durationVariation = Math.random() * 0.6 - 0.3; // -0.3到+0.3秒变化
       const duration = baseDuration + durationVariation;
       
       // 随机旋转角度
-      const rotation = Math.random() * 720 - 360; // -360到+360度
+      const rotation = Math.random() * 720 - 360; // -360到+720度
       
       // 随机大小变化
       const scale = 0.8 + Math.random() * 0.4; // 0.8-1.2倍大小
@@ -97,7 +96,6 @@ export const Falling3DCoins = () => {
               top: `${coin.y}px`,
               animationDelay: `${coin.delay}s`,
               animationDuration: `${coin.duration}s`,
-              transform: `rotate(${coin.rotation}deg) scale(${coin.scale})`,
               opacity: coin.opacity,
             }}
           >
