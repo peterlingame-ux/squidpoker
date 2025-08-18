@@ -160,7 +160,7 @@
 /* 3D Falling Coins Animation */
 @keyframes fall {
   0% {
-    transform: translateY(-80px) rotateY(0deg) rotateX(0deg);
+    transform: translateY(-80px) rotateY(0deg);
     opacity: 0;
   }
   5% {
@@ -170,41 +170,187 @@
     opacity: 0.8;
   }
   100% {
-    transform: translateY(calc(100vh + 80px)) rotateY(720deg) rotateX(360deg);
+    transform: translateY(calc(100vh + 80px)) rotateY(360deg);
+    opacity: 0;
+  }
+}
+
+/* 移动端优化的下落动画 */
+@keyframes fall-mobile {
+  0% {
+    transform: translateY(-80px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(calc(100vh + 80px));
+    opacity: 0;
+  }
+}
+
+/* 随机摇摆下落动画 */
+@keyframes fall-swing {
+  0% {
+    transform: translateY(-80px) translateX(0px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+    transform: translateY(-60px) translateX(5px);
+  }
+  25% {
+    transform: translateY(-40px) translateX(-3px);
+  }
+  40% {
+    transform: translateY(-20px) translateX(4px);
+  }
+  55% {
+    transform: translateY(0px) translateX(-2px);
+  }
+  70% {
+    transform: translateY(20px) translateX(3px);
+  }
+  85% {
+    transform: translateY(40px) translateX(-1px);
+  }
+  100% {
+    transform: translateY(calc(100vh + 80px)) translateX(0px);
+    opacity: 0;
+  }
+}
+
+/* 随机摇摆下落动画2 */
+@keyframes fall-swing-2 {
+  0% {
+    transform: translateY(-80px) translateX(0px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+    transform: translateY(-50px) translateX(-4px);
+  }
+  30% {
+    transform: translateY(-30px) translateX(6px);
+  }
+  45% {
+    transform: translateY(-10px) translateX(-5px);
+  }
+  60% {
+    transform: translateY(10px) translateX(3px);
+  }
+  75% {
+    transform: translateY(30px) translateX(-2px);
+  }
+  90% {
+    transform: translateY(50px) translateX(1px);
+  }
+  100% {
+    transform: translateY(calc(100vh + 80px)) translateX(0px);
     opacity: 0;
   }
 }
 
 @keyframes coinRotate {
   0% {
-    transform: rotateY(0deg) rotateX(0deg);
-  }
-  25% {
-    transform: rotateY(90deg) rotateX(90deg);
+    transform: rotateY(0deg);
   }
   50% {
-    transform: rotateY(180deg) rotateX(180deg);
-  }
-  75% {
-    transform: rotateY(270deg) rotateX(270deg);
+    transform: rotateY(180deg);
   }
   100% {
-    transform: rotateY(360deg) rotateX(360deg);
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes coinRotateSimple {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+/* 移动端简化的旋转动画 */
+@keyframes coinRotateMobile {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+/* 随机旋转动画 */
+@keyframes coinRotateRandom {
+  0% {
+    transform: rotateY(0deg) rotateZ(0deg);
+  }
+  25% {
+    transform: rotateY(90deg) rotateZ(45deg);
+  }
+  50% {
+    transform: rotateY(180deg) rotateZ(90deg);
+  }
+  75% {
+    transform: rotateY(270deg) rotateZ(135deg);
+  }
+  100% {
+    transform: rotateY(360deg) rotateZ(180deg);
   }
 }
 
 .falling-coin {
   animation: fall linear infinite;
   top: -80px; /* 确保从顶部开始 */
+  will-change: transform, opacity;
+  transform: translateZ(0); /* 启用硬件加速 */
+}
+
+/* 为不同金币应用不同的动画 */
+.falling-coin:nth-child(3n) {
+  animation: fall-swing linear infinite;
+}
+
+.falling-coin:nth-child(3n+1) {
+  animation: fall-swing-2 linear infinite;
+}
+
+.falling-coin:nth-child(3n+2) {
+  animation: fall linear infinite;
 }
 
 .coin-3d {
   transform-style: preserve-3d;
-  animation: coinRotate 2s linear infinite;
+  animation: coinRotate 3s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.coin-3d-simple {
+  transform-style: preserve-3d;
+  animation: coinRotateSimple 4s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* 为不同金币应用不同的旋转动画 */
+.falling-coin:nth-child(2n) .coin-3d-simple {
+  animation: coinRotateRandom 3s linear infinite;
+}
+
+.falling-coin:nth-child(2n+1) .coin-3d-simple {
+  animation: coinRotateSimple 4s linear infinite;
 }
 
 .coin-face {
   backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .coin-front {
@@ -214,6 +360,60 @@
 .coin-back {
   transform: rotateY(180deg);
   z-index: 1;
+}
+
+/* 移动端性能优化 */
+@media (max-width: 768px) {
+  .falling-coin {
+    animation: fall-mobile linear infinite !important; /* 使用移动端优化的动画 */
+    animation-duration: 3s !important; /* 移动端动画时长 */
+  }
+  
+  .coin-3d-simple {
+    animation: coinRotateMobile 2s linear infinite !important; /* 移动端旋转动画 */
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  
+  /* 移动端减少阴影和复杂效果 */
+  .falling-coin {
+    filter: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* 低端移动设备进一步优化 */
+@media (max-width: 480px) {
+  .falling-coin {
+    animation-duration: 2.5s !important; /* 稍微加快速度 */
+  }
+  
+  .coin-3d-simple {
+    animation-duration: 1.8s !important; /* 旋转速度适中 */
+  }
+}
+
+/* 超低端设备优化 */
+@media (max-width: 360px) {
+  .falling-coin {
+    animation-duration: 2s !important;
+  }
+  
+  .coin-3d-simple {
+    animation-duration: 1.5s !important; /* 保持旋转效果 */
+  }
+}
+
+/* 低性能设备优化 */
+@media (prefers-reduced-motion: reduce) {
+  .falling-coin {
+    animation-duration: 1.5s !important;
+  }
+  
+  .coin-3d,
+  .coin-3d-simple {
+    animation: none;
+  }
 }
 
 /* Mobile-specific optimizations */
@@ -351,5 +551,177 @@
   /* Mobile-optimized borders */
   .mobile-border {
     border-width: 1px;
+  }
+}
+
+/* 移动端触摸优化 */
+@media (max-width: 768px) {
+  /* 触摸友好的按钮大小 */
+  button, 
+  [role="button"],
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* 触摸滚动优化 */
+  .touch-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* 移动端字体大小优化 */
+  .mobile-text-xs { font-size: 0.75rem; }
+  .mobile-text-sm { font-size: 0.875rem; }
+  .mobile-text-base { font-size: 1rem; }
+  .mobile-text-lg { font-size: 1.125rem; }
+  .mobile-text-xl { font-size: 1.25rem; }
+  .mobile-text-2xl { font-size: 1.5rem; }
+  
+  /* 移动端间距优化 */
+  .mobile-p-2 { padding: 0.5rem; }
+  .mobile-p-4 { padding: 1rem; }
+  .mobile-p-6 { padding: 1.5rem; }
+  .mobile-p-8 { padding: 2rem; }
+  
+  .mobile-m-2 { margin: 0.5rem; }
+  .mobile-m-4 { margin: 1rem; }
+  .mobile-m-6 { margin: 1.5rem; }
+  .mobile-m-8 { margin: 2rem; }
+  
+  /* 移动端网格优化 */
+  .mobile-grid-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .mobile-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  
+  /* 移动端隐藏元素 */
+  .mobile-hidden { display: none; }
+  
+  /* 移动端显示元素 */
+  .mobile-block { display: block; }
+  .mobile-flex { display: flex; }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+  /* 触摸设备上的悬停效果 */
+  .hover\:scale-105:hover {
+    transform: scale(1.05);
+  }
+  
+  .hover\:bg-primary\/90:hover {
+    background-color: hsl(var(--primary) / 0.9);
+  }
+  
+  /* 触摸设备上的过渡效果 */
+  .transition-all {
+    transition: all 0.2s ease;
+  }
+}
+
+/* 低性能设备优化 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .falling-coin,
+  .coin-3d,
+  .coin-3d-simple {
+    animation: none !important;
+  }
+}
+
+/* 移动端视口高度修复 */
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+  
+  .h-screen {
+    height: -webkit-fill-available;
+  }
+}
+
+/* 移动端滚动条优化 */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 2px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+}
+
+/* 移动端选择文本优化 */
+@media (max-width: 768px) {
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+    color: hsl(var(--primary-foreground));
+  }
+  
+  ::-moz-selection {
+    background: hsl(var(--primary) / 0.3);
+    color: hsl(var(--primary-foreground));
+  }
+}
+
+/* 移动端金币动画性能优化 */
+@media (max-width: 768px) {
+  /* 减少GPU负担 */
+  .falling-coin {
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform-style: flat;
+  }
+  
+  /* 优化渐变效果 */
+  .falling-coin .bg-gradient-to-br {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+  }
+  
+  /* 减少阴影复杂度 */
+  .falling-coin .shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+  
+  /* 优化字体渲染 */
+  .falling-coin .text-yellow-800 {
+    text-rendering: optimizeSpeed;
+    font-smooth: never;
+    -webkit-font-smoothing: none;
+  }
+}
+
+/* 超低端设备优化 */
+@media (max-width: 360px) {
+  .falling-coin {
+    animation-duration: 1.5s !important;
+  }
+  
+  .coin-3d-simple {
+    animation: none !important;
+  }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+  .falling-coin {
+    /* 触摸设备上减少动画复杂度 */
+    animation-timing-function: ease-out;
   }
 }

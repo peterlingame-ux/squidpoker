@@ -64,31 +64,27 @@ export const HeroSection = ({ language }: LanguageProps) => {
           alt="Squid Poker Characters Background" 
           className="w-full h-full object-contain object-center"
         />
-        {/* Left side color extension */}
-        {/* <div className="absolute left-0 top-0 w-1/3 h-full bg-gradient-to-r from-[#f5f1e8] via-[#f5f1e8] to-transparent"></div> */}
-        {/* Right side color extension */}
-        {/* <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-[#f5f1e8] via-[#f5f1e8] to-transparent"></div> */}
       </div>
 
       {/* 3D散落硬币效果 */}
       <Falling3DCoins />
 
       {/* Download Button Section */}
-      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6">
-        <div className="text-center w-full max-w-4xl">
+      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="text-center w-full max-w-4xl mx-auto">
           {/* Title */}
-          <h1 className={`font-bold mb-4 sm:mb-6 text-white drop-shadow-2xl tracking-wider px-2 sm:px-4 ${
+          <h1 className={`font-bold mb-4 sm:mb-6 lg:mb-8 text-white drop-shadow-2xl tracking-wider px-2 sm:px-4 ${
             isMobile 
-              ? 'text-3xl sm:text-4xl' 
-              : 'text-4xl sm:text-5xl md:text-6xl lg:text-8xl'
+              ? 'text-2xl sm:text-3xl md:text-4xl' 
+              : 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl'
           }`}>
             {currentContent.title}
           </h1>
           
           {/* Tagline */}
-          <p className={`text-white/90 mb-6 sm:mb-8 sm:mb-12 drop-shadow-lg max-w-2xl mx-auto px-2 sm:px-4 leading-relaxed ${
+          <p className={`text-white/90 mb-6 sm:mb-8 lg:mb-12 drop-shadow-lg max-w-2xl mx-auto px-2 sm:px-4 leading-relaxed ${
             isMobile 
-              ? 'text-sm sm:text-base' 
+              ? 'text-xs sm:text-sm md:text-base' 
               : 'text-base sm:text-lg md:text-xl lg:text-2xl'
           }`}>
             {currentContent.tagline}
@@ -96,9 +92,9 @@ export const HeroSection = ({ language }: LanguageProps) => {
           
           {/* Download Button */}
           <Button 
-            className={`font-bold bg-primary hover:bg-primary/90 text-white rounded-2xl shadow-2xl hover:scale-105 transition-all duration-300 mx-2 sm:mx-4 ${
+            className={`font-bold bg-primary hover:bg-primary/90 active:bg-primary/80 text-white rounded-2xl shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 mx-2 sm:mx-4 touch-manipulation ${
               isMobile 
-                ? 'px-6 py-3 text-base sm:text-lg w-full max-w-xs' 
+                ? 'px-6 py-3 text-base sm:text-lg w-full max-w-xs sm:max-w-sm touch-target' 
                 : 'px-6 sm:px-8 md:px-12 py-4 sm:py-5 md:py-6 text-lg sm:text-xl'
             }`}
             size={isMobile ? "default" : "lg"}
@@ -110,7 +106,7 @@ export const HeroSection = ({ language }: LanguageProps) => {
       </div>
 
       {/* Minimal decorative elements */}
-      <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 z-20 opacity-40">
+      <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-4 sm:left-6 md:left-8 z-20 opacity-40">
         <div className="flex gap-1 sm:gap-2">
           <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full"></div>
           <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-muted rounded-full"></div>

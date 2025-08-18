@@ -139,3 +139,117 @@ export const useMobileOptimization = () => {
       mobileGridLayouts[layout]
   };
 };
+
+/**
+ * 移动端工具函数
+ * 提供触摸手势检测、性能优化等功能
+ */
+
+// 检测是否为触摸设备
+export const isTouchDevice = (): boolean => {
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+};
+
+// 检测设备性能等级
+export const getDevicePerformance = (): 'low' | 'medium' | 'high' => {
+  const cores = navigator.hardwareConcurrency || 1;
+  const memory = (navigator as any).deviceMemory || 1;
+  
+  if (cores < 4 || memory < 4) return 'low';
+  if (cores < 8 || memory < 8) return 'medium';
+  return 'high';
+};
+
+// 检测是否为低端移动设备
+export const isLowEndMobile = (): boolean => {
+  const isMobile = window.innerWidth < 768;
+  const performance = getDevicePerformance();
+  return isMobile && performance === 'low';
+};
+
+// 优化触摸事件
+export const optimizeTouchEvents = (element: HTMLElement): void => {
+  // 添加触摸优化属性
+  element.style.touchAction = 'manipulation';
+  element.style.webkitTouchCallout = 'none';
+  element.style.webkitUserSelect = 'none';
+  element.style.userSelect = 'none';
+};
+
+// 防抖函数，用于优化频繁触发的事件
+export const debounce = <T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+): ((...args: Parameters<T>) => void) => {
+  let timeout: NodeJS.Timeout;
+  return (...args: Parameters<T>) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+};
+
+// 节流函数，用于限制函数调用频率
+export const throttle = <T extends (...args: any[]) => any>(
+  func: T,
+  limit: number
+): ((...args: Parameters<T>) => void) => {
+  let inThrottle: boolean;
+  return (...args: Parameters<T>) => {
+    if (!inThrottle) {
+      func(...args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+};
+
+// 检测网络状态
+export const getNetworkInfo = (): { effectiveType: string; downlink: number } => {
+  const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
+  
+  if (connection) {
+    return {
+      effectiveType: connection.effectiveType || 'unknown',
+      downlink: connection.downlink || 0
+    };
+  }
+  
+  return { effectiveType: 'unknown', downlink: 0 };
+};
+
+// 根据网络状态调整动画质量
+export const shouldReduceMotion = (): boolean => {
+  const networkInfo = getNetworkInfo();
+  const isLowPerformance = getDevicePerformance() === 'low';
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  // 只在网络很差或用户明确要求减少动画时才返回true
+  return networkInfo.effectiveType === 'slow-2g' || prefersReducedMotion;
+};
+
+// 移动端视口高度修复（解决移动端浏览器地址栏问题）
+export const getMobileViewportHeight = (): number => {
+  if (typeof window !== 'undefined') {
+    return window.innerHeight;
+  }
+  return 100;
+};
+
+// 检测设备方向变化
+export const onOrientationChange = (callback: (orientation: 'portrait' | 'landscape') => void): (() => void) => {
+  const handleOrientationChange = () => {
+    const orientation = window.innerHeight > window.innerWidth ? 'portrait' : 'landscape';
+    callback(orientation);
+  };
+  
+  window.addEventListener('orientationchange', handleOrientationChange);
+  window.addEventListener('resize', handleOrientationChange);
+  
+  // 初始调用
+  handleOrientationChange();
+  
+  return () => {
+    window.removeEventListener('orientationchange', handleOrientationChange);
+    window.removeEventListener('resize', handleOrientationChange);
+  };
+};
